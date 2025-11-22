@@ -14,7 +14,7 @@ function Footer() {
   const isMypageActive = pathname === "/mypage";
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl py-3 pt-2.5 max-w-max-width mx-auto z-20">
+    <div className="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl py-3 pt-2.5 h-footer box-border max-w-max-width mx-auto z-20">
       <div className="grid grid-cols-3 items-center px-2">
         <Link
           href="/"

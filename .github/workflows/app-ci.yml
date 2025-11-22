@@ -1,0 +1,38 @@
+name: App CI
+
+env:
+  HUSKY: 0
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  Pipelines:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        command: [lint, build]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run commands
+        run: npm run ${{ matrix.command }}

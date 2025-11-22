@@ -17,7 +17,7 @@ export default function LoginPage() {
         </section>
         <section className="w-full space-y-2">
           <Button text="로그인" />
-          <Button text="회원가입" outline href="/join" />
+          <Button text="회원가입" variant="primary-outline" href="/join" />
         </section>
       </section>
     </div>
