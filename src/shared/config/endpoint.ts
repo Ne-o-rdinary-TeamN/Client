@@ -5,4 +5,7 @@ export const ENDPOINT = {
     LOGIN: "",
     JOIN: "",
   },
+  BOARD: {
+    GET_POST: (id: string | number) => `/board/${id}`,
+  },
 };
