@@ -1,21 +1,20 @@
 "use client";
 
-import { Post } from "../model/post";
-import PostItem from "./PostItem";
-import { Category } from "@/shared/model";
+import { Post } from "@/entities/post/model/post";
+import PostItem from "@/entities/post/ui/PostItem";
 import { useEffect, useRef, useState } from "react";
-import { fetchPostListClient } from "../api/fetchPostListClient";
+import { fetchJoinedPostClient } from "../api/fetchJoinedPostClient";
 import type { BasePagedResponse } from "@/shared/api/baseResponse";
 
-interface PostListScrollViewProps {
-  category: Category;
+interface MyJoinPostListProps {
+  userPk: number;
   initialData: BasePagedResponse<Post[]>;
 }
 
-export default function PostListScrollView({
-  category,
+export default function MyJoinPostList({
+  userPk,
   initialData,
-}: PostListScrollViewProps) {
+}: MyJoinPostListProps) {
   const [posts, setPosts] = useState<Post[]>(initialData?.content || []);
   const [page, setPage] = useState(0);
   const [isLast, setIsLast] = useState(initialData?.last || false);
@@ -31,12 +30,12 @@ export default function PostListScrollView({
           setIsLoading(true);
           try {
             const nextPage = page + 1;
-            const response = await fetchPostListClient(category, nextPage);
+            const response = await fetchJoinedPostClient(userPk, nextPage);
             setPosts((prev) => [...prev, ...response.content]);
             setPage(nextPage);
             setIsLast(response.last);
           } catch (error) {
-            console.error("Failed to fetch posts:", error);
+            console.error("Failed to fetch joined posts:", error);
           } finally {
             setIsLoading(false);
           }
@@ -54,7 +53,7 @@ export default function PostListScrollView({
         observer.unobserve(currentObserver);
       }
     };
-  }, [category, page, isLoading, isLast]);
+  }, [userPk, page, isLoading, isLast]);
 
   return (
     <div className="mt-4 flex flex-col gap-4 pb-20">
@@ -76,7 +75,9 @@ export default function PostListScrollView({
         </>
       ) : (
         <div className="flex items-center justify-center h-full mt-20">
-          <p className="font-regular-14 text-gray-004">투표가 없습니다.</p>
+          <p className="font-regular-14 text-gray-004">
+            참여한 토론이 없습니다.
+          </p>
         </div>
       )}
     </div>

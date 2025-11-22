@@ -37,11 +37,11 @@ export default function PostItem({
           {title}
         </p>
         <div className="flex items-center justify-center gap-2 mt-1">
-          {/* {hashtags.map((hashtag) => (
+          {hashtags.map((hashtag) => (
             <p className="font-regular-13 text-gray-004" key={hashtag}>
               #{hashtag}
             </p>
-          ))} */}
+          ))}
         </div>
         {participated ? (
           <ResultButton
