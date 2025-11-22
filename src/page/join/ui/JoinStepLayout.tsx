@@ -59,7 +59,7 @@ function BackButton() {
   return (
     <Button
       text="이전"
-      outline
+      variant="primary-outline"
       className="w-fit text-nowrap"
       onClick={handleBack}
     />
