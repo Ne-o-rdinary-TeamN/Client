@@ -1,37 +1,36 @@
 "use client";
 import RightArrow from "@/shared/ui/icons/RightArrow";
 import Image from "next/image";
-import React from "react";
 
 const dummyHotTopics = [
   {
     id: 1,
     category: "시사",
-    title: "핫토픽 내용 1핫토픽 내용 1핫토픽 내용 1핫토픽 내용 1핫토픽 내용 1",
+    title: "전국민 민생회복지원금 도움이 되었을까?",
     commentCount: 256,
   },
   {
     id: 2,
     category: "경제",
-    title: "핫토픽 내용 2",
+    title: "노키즈존, 혐오일까? 개인의 자유일까?",
     commentCount: 189,
   },
   {
     id: 3,
     category: "기술",
-    title: "핫토픽 내용 3",
+    title: "아이가 생기면 꼭 결혼해야할까?",
     commentCount: 342,
   },
   {
     id: 4,
     category: "스포츠",
-    title: "핫토픽 내용 4",
+    title: "SK 하이닉스 1000만원 갈까?",
     commentCount: 521,
   },
   {
     id: 5,
     category: "연예",
-    title: "핫토픽 내용 5",
+    title: "서울 전세 VS 경기권 자가",
     commentCount: 128,
   },
 ];
@@ -51,12 +50,17 @@ function HotTopic() {
               className="w-[200px] h-[260px] rounded-xl text-white font-regular-12 p-4 flex flex-col shrink-0 relative overflow-hidden"
               style={{
                 scrollSnapAlign: "start",
-                backgroundImage: `url(/images/topic${topic.id}.svg)`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat'
               }}
             >
+              <Image
+                src={`/images/topic${topic.id}.svg`}
+                alt={`${topic.category} 배경`}
+                fill
+                className="object-cover z-0"
+                loading="lazy"
+                placeholder="blur"
+                blurDataURL={`/images/topic${topic.id}.svg`}
+              />
               <div className="absolute inset-0 z-0" />
               <div className="relative z-10 flex flex-col h-full">
                 <div className="flex ml-auto items-center gap-1">
@@ -76,6 +80,9 @@ function HotTopic() {
                       alt="comment"
                       width={16}
                       height={16}
+                      loading="lazy"
+                      placeholder="blur"
+                      blurDataURL="/icons/comment.svg"
                     />
                     <p className="text-blue-001">{topic.commentCount}</p>
                   </div>
