@@ -7,7 +7,7 @@ export const ENDPOINT = {
     USER_INFO: "/api/user/check",
   },
   NEWS: {
-    TOP_NEWS: "/api/search/news?display=5",
+    TOP_NEWS: "/api/news/hot",
   },
   POST: {
     CREATE: "/api/posts/create",
@@ -15,6 +15,6 @@ export const ENDPOINT = {
   },
   BOARD: {
     POST_DETAIL: (postPk: number) => `/api/posts/${postPk}`,
-    COMMENT_DETAIL: (postPk: number, option: "all" | "agree" | "disagree") => `/api/comments/${postPk}/${option}`,
+    COMMENT_DETAIL: (postPk: number) => `/${postPk}/comments/`,
   },
 };

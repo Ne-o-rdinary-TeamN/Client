@@ -7,7 +7,7 @@ export interface NewsItem {
 export interface NewsResponse {
   result: {
     display: number;
-    items: NewsItem[];
+    newsList: NewsItem[];
     start: number;
     total: number;
   }

@@ -33,8 +33,7 @@ function HotNewsButton({
 
 async function HotNews() {
     const newsData = await getNews();
-    const newsItems: NewsItem[] = newsData?.result?.items || [];
-
+    const newsItems: NewsItem[] = newsData?.result?.newsList || [];
     return (
         <section className="mt-6 px-side pb-[140px]">
             <h1 className="font-semibold-18 text-gray-006 pl-2">실시간 핫뉴스</h1>

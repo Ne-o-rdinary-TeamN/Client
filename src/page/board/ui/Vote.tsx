@@ -1,23 +1,15 @@
-"use client";
 import UserIcon from "@/shared/ui/icons/UserIcon";
 import Image from "next/image";
 import React from "react";
 import { getBoardDetail } from "../api/boardDetail";
-
-const dummyVoteData = {
-    approvePercent: 60,
-    approveCount: 60,
-    oppositePercent: 40,
-    oppositeCount: 40,
-    totalCount: 100,
-};
 
 async function Vote({ postPk }: { postPk: number }) {
     const boardDetail = await getBoardDetail(postPk);
     if (!boardDetail) {
         return <div>게시글을 불러오는 중 오류가 발생했습니다.</div>;
     }
-    const { title, hashtags, participated, agree, disagree, agreeCount, disagreeCount, agreeRate, disagreeRate } = boardDetail;
+    console.log(boardDetail);
+    const { title, hashtags, participated, agree, disagree, agreeCount, disagreeCount, agreeRate, disagreeRate } = boardDetail.result;
     return (
         <div>
             <div className="w-full pb-4 mt-header bg-white">
@@ -27,24 +19,24 @@ async function Vote({ postPk }: { postPk: number }) {
                         <h2 className="font-regular-12 text-blue-004">참여완료!</h2>
                     </div>
                     <p className="font-bold-20 text-gray-007 text-center mt-3">
-                        새벽배송 금지, 당신의 생각은?
+                        {title}
                     </p>
                     <div className="flex items-center justify-center gap-2 mt-1">
-                        <p className="font-regular-13 text-gray-004">#새벽배송</p>
-                        <p className="font-regular-13 text-gray-004">#과로</p>
-                        <p className="font-regular-13 text-gray-004">#노동</p>
+                        {hashtags.map((hashtag: string) => (
+                            <p className="font-regular-13 text-gray-004" key={hashtag}>#{hashtag}</p>
+                        ))}
                     </div>
                     <div className="flex w-full items-end gap-2 mt-5">
                         <div
                             className="relative flex flex-col"
                             style={{
-                                width: `${dummyVoteData.approvePercent}%`,
+                                width: `${agreeRate === 0 ? 50 : agreeRate}%`,
                                 maxWidth: "60%",
                                 minWidth: "40%",
                             }}
                         >
-                            {dummyVoteData.approvePercent >=
-                                dummyVoteData.oppositePercent && (
+                            {agreeRate >=
+                                disagreeRate && (
                                     <Image
                                         className="absolute -top-6 left-4 z-5"
                                         src="/images/approve.svg"
@@ -54,19 +46,19 @@ async function Vote({ postPk }: { postPk: number }) {
                                     />
                                 )}
                             <button
-                                className={`${dummyVoteData.approvePercent >= dummyVoteData.oppositePercent
-                                        ? "bg-blue-003"
-                                        : "bg-blue-001"
+                                className={`${agreeRate >= disagreeRate
+                                    ? "bg-blue-003"
+                                    : "bg-blue-001"
                                     } text-white rounded-2xl py-2 px-4 w-full font-semibold-14 relative flex flex-col justify-center`}
                                 style={{
-                                    height: `${48 + (dummyVoteData.approvePercent - 50) * 1.2}px`,
+                                    height: `${48 + (agreeRate - 50) * 1.2}px`,
                                     minHeight: "48px",
                                     maxHeight: "60px",
                                 }}
                             >
                                 <h2>찬성</h2>
                                 <p className="font-regular-12 text-gray-001">
-                                    {dummyVoteData.approvePercent}%({dummyVoteData.approveCount}
+                                    {agreeRate}%({agreeCount}
                                     명)
                                 </p>
                             </button>
@@ -77,13 +69,13 @@ async function Vote({ postPk }: { postPk: number }) {
                         <div
                             className="relative flex flex-col"
                             style={{
-                                width: `${dummyVoteData.oppositePercent}%`,
+                                width: `${disagreeRate === 0 ? 50 : disagreeRate}%`,
                                 maxWidth: "60%",
                                 minWidth: "40%",
                             }}
                         >
-                            {dummyVoteData.approvePercent <=
-                                dummyVoteData.oppositePercent && (
+                            {agreeRate <=
+                                disagreeRate && (
                                     <Image
                                         className="absolute -top-6 right-4 z-5"
                                         src="/images/opposite.svg"
@@ -93,12 +85,12 @@ async function Vote({ postPk }: { postPk: number }) {
                                     />
                                 )}
                             <button
-                                className={`${dummyVoteData.approvePercent <= dummyVoteData.oppositePercent
-                                        ? "bg-red-003"
-                                        : "bg-red-001"
+                                className={`${agreeRate <= disagreeRate
+                                    ? "bg-red-003"
+                                    : "bg-red-001"
                                     } text-white rounded-2xl py-2 px-4 w-full font-semibold-14 relative flex flex-col justify-center`}
                                 style={{
-                                    height: `${48 + (dummyVoteData.oppositePercent - 50) * 1.2
+                                    height: `${48 + (disagreeRate - 50) * 1.2
                                         }px`,
                                     minHeight: "50px",
                                     maxHeight: "60px",
@@ -106,7 +98,7 @@ async function Vote({ postPk }: { postPk: number }) {
                             >
                                 <h2>반대</h2>
                                 <p className="font-regular-12 text-gray-001">
-                                    {dummyVoteData.oppositePercent}%({dummyVoteData.oppositeCount}
+                                    {disagreeRate}%({disagreeCount}
                                     명)
                                 </p>
                             </button>
