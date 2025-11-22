@@ -48,28 +48,37 @@ function HotTopic() {
           {dummyHotTopics.map((topic) => (
             <div
               key={topic.id}
-              className="w-[200px] h-[260px] bg-blue-004 rounded-xl text-white font-regular-12 p-4 flex flex-col shrink-0"
-              style={{ scrollSnapAlign: "start" }}
+              className="w-[200px] h-[260px] rounded-xl text-white font-regular-12 p-4 flex flex-col shrink-0 relative overflow-hidden"
+              style={{
+                scrollSnapAlign: "start",
+                backgroundImage: `url(/images/topic${topic.id}.svg)`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
+              }}
             >
-              <div className="flex ml-auto items-center gap-1">
-                <p className="text-white flex">바로가기</p>
-                <RightArrow className="text-white" />
-              </div>
-              <div className="text-white mt-auto flex flex-col gap-2">
-                <p className="bg-blue-002 w-fit rounded-full px-2.5 py-0.5 text-blue-004">
-                  {topic.category}
-                </p>
-                <p className="font-bold-20 text-white line-clamp-2">
-                  {topic.title}
-                </p>
-                <div className="flex items-center gap-1">
-                  <Image
-                    src="/icons/comment.svg"
-                    alt="comment"
-                    width={16}
-                    height={16}
-                  />
-                  <p className="text-blue-001">{topic.commentCount}</p>
+              <div className="absolute inset-0 z-0" />
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="flex ml-auto items-center gap-1">
+                  <p className="text-white flex">바로가기</p>
+                  <RightArrow className="text-white" />
+                </div>
+                <div className="text-white mt-auto flex flex-col gap-2">
+                  <p className="bg-blue-002 w-fit rounded-full px-2.5 py-0.5 text-blue-004">
+                    {topic.category}
+                  </p>
+                  <p className="font-bold-20 text-white line-clamp-2">
+                    {topic.title}
+                  </p>
+                  <div className="flex items-center gap-1">
+                    <Image
+                      src="/icons/comment.svg"
+                      alt="comment"
+                      width={16}
+                      height={16}
+                    />
+                    <p className="text-blue-001">{topic.commentCount}</p>
+                  </div>
                 </div>
               </div>
             </div>
