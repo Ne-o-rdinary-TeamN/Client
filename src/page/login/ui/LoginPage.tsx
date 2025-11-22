@@ -53,7 +53,12 @@ export default function LoginPage() {
               type="submit"
               disabled={isLoading}
             />
-            <Button text="회원가입" variant="primary-outline" href="/join" />
+            <Button
+              text="회원가입"
+              variant="primary-outline"
+              href="/join"
+              type="button"
+            />
           </div>
         </form>
       </section>

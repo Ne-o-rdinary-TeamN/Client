@@ -7,13 +7,13 @@ export const STEP = {
 
 export type UserJoinInfo = {
   name: string;
-  id: string;
+  userId: string;
   password: string;
 };
 
 export type NameStep = Partial<Pick<UserJoinInfo, "name">>;
 
-export type IdStep = Partial<Pick<UserJoinInfo, "name" | "id">>;
+export type IdStep = Partial<Pick<UserJoinInfo, "name" | "userId">>;
 
 export type PasswordStep = Partial<UserJoinInfo>;
 

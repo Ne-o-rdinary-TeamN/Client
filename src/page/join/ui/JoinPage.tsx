@@ -6,10 +6,12 @@ import {
   type IdStep,
   type NameStep,
   type PasswordStep,
+  type UserJoinInfo,
   STEP,
 } from "../model/step";
 import JoinStep from "./JoinStep";
 import JoinCompleteStep from "./JoinCompleteStep";
+import { submitJoin } from "../api/submitJoin";
 
 export default function JoinPage() {
   const funnel = useFunnel<{
@@ -31,19 +33,22 @@ export default function JoinPage() {
         <JoinStep
           type="name"
           placeholder="이름"
-          onNext={(name) =>
-            funnel.history.push(STEP.ID, (prev) => ({ ...prev, name }))
-          }
+          onNext={async (name) => {
+            await funnel.history.push(STEP.ID, (prev) => ({ ...prev, name }));
+          }}
         />
       );
     case STEP.ID:
       return (
         <JoinStep
-          type="id"
+          type="userId"
           placeholder="아이디"
-          onNext={(id) =>
-            funnel.history.push(STEP.PASSWORD, (prev) => ({ ...prev, id }))
-          }
+          onNext={async (userId) => {
+            await funnel.history.push(STEP.PASSWORD, (prev) => ({
+              ...prev,
+              userId,
+            }));
+          }}
         />
       );
     case STEP.PASSWORD: {
@@ -52,14 +57,25 @@ export default function JoinPage() {
         <JoinStep
           type="password"
           placeholder="비밀번호"
-          onNext={(password) => {
-            console.log("회원가입:", { ...context, password });
-            funnel.history.push(STEP.COMPLETE);
+          onNext={async (password) => {
+            alert(JSON.stringify(context));
+            alert(password);
+            const result = await submitJoin({
+              ...context,
+              password,
+            } as UserJoinInfo);
+            if (result.success) {
+              funnel.history.push(STEP.COMPLETE);
+            } else {
+              alert(
+                (result as { error: string }).error ?? "회원가입에 실패했어요."
+              );
+            }
           }}
         />
       );
     }
     case STEP.COMPLETE:
-      return <JoinCompleteStep />;
+      return <JoinCompleteStep name={funnel.context.name as string} />;
   }
 }

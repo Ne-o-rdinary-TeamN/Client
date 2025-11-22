@@ -49,20 +49,26 @@ export default function Button({
   className,
   onClick,
   href,
+  type,
   ...rest
 }: ButtonProps) {
   const router = useRouter();
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (href) {
+      e.preventDefault();
       router.push(href);
     } else {
       onClick?.();
     }
   };
 
+  // href가 있으면 자동으로 type="button", 없으면 전달된 type 사용
+  const buttonType = href ? "button" : type;
+
   return (
     <button
+      type={buttonType}
       {...rest}
       className={cn(buttonVariants({ size, variant }), className)}
       onClick={handleClick}
