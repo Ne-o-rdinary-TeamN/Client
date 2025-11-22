@@ -39,8 +39,8 @@ export default function JoinPage() {
     case STEP.ID:
       return (
         <JoinStep
-          type="email"
-          placeholder="이메일"
+          type="id"
+          placeholder="아이디"
           onNext={(id) =>
             funnel.history.push(STEP.PASSWORD, (prev) => ({ ...prev, id }))
           }
