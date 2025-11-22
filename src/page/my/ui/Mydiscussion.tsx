@@ -29,7 +29,7 @@ function Mydiscussion({ userInfo }: MydiscussionProps) {
           </div>
           <div className="w-full flex gap-2 mt-2">
             <Link
-              href="/mypage/register"
+              href="/my/register"
               className="w-full font-semibold-16 flex flex-col justify-center items-center bg-blue-003 rounded-xl p-3"
             >
               <h3 className="font-regular-14 text-gray-100">등록한 토론</h3>
@@ -38,7 +38,7 @@ function Mydiscussion({ userInfo }: MydiscussionProps) {
               </h3>
             </Link>
             <Link
-              href="/mypage/join"
+              href="/my/join"
               className="w-full font-semibold-16 flex flex-col justify-center items-center bg-white text-blue-004 rounded-xl p-3"
             >
               <h3 className="font-regular-14 ">참여한 토론</h3>
