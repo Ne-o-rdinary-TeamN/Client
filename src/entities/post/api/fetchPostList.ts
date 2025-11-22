@@ -8,18 +8,18 @@ import type {
 } from "@/shared/api/baseResponse";
 import { REVALIDATE_TAG } from "@/shared/config/revalidateTag";
 
-export const fetchPostList = async (category: Category) => {
+export const fetchPostList = async (category: Category, page: number = 0) => {
   const response = await Http.get<BaseResponse<BasePagedResponse<Post[]>>>({
     request: ENDPOINT.POST.READ_ALL,
     authorize: true,
     params: {
       category,
+      page,
     },
     next: {
       revalidate: 60 * 2,
       tags: [REVALIDATE_TAG.POST(category)],
     },
   });
-  console.log(response.result.content);
-  return response.result.content;
+  return response.result;
 };

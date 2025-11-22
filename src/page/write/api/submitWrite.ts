@@ -3,6 +3,7 @@
 import { Http } from "@/shared/api/http";
 import { ENDPOINT } from "@/shared/config/endpoint";
 import { FormState } from "../model/form";
+import { revalidatePath } from "next/cache";
 
 interface WriteResponse {
   isSuccess: boolean;
@@ -21,6 +22,7 @@ export const submitWrite = async (data: FormState) => {
       data,
       authorize: true,
     });
+    revalidatePath(ENDPOINT.POST.READ_ALL);
     return response;
   } catch (error) {
     console.error("글 작성 실패:", error);

@@ -4,12 +4,12 @@ import { Category } from "@/shared/model";
 import PostCategory from "./PostCategory";
 
 export default async function PostsPage({ category }: { category: Category }) {
-  const posts = await fetchPostList(category);
+  const initialData = await fetchPostList(category, 0);
 
   return (
     <>
       <PostCategory selectedCategory={category} />
-      <PostListScrollView posts={posts} />
+      <PostListScrollView category={category} initialData={initialData} />
     </>
   );
 }
