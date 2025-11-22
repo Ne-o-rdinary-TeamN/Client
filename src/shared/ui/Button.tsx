@@ -1,16 +1,26 @@
 "use client";
 
 import { cn } from "@/shared/lib/cn";
+import { useRouter } from "next/navigation";
 
-export default function LoginButton({
-  text,
-  outline,
-  onClick,
-}: {
+interface ButtonProps {
   text: string;
   outline?: boolean;
   onClick?: () => void;
-}) {
+  href?: string;
+}
+
+export default function Button({ text, outline, onClick, href }: ButtonProps) {
+  const router = useRouter();
+
+  const handleClick = () => {
+    if (href) {
+      router.push(href);
+    } else {
+      onClick?.();
+    }
+  };
+
   return (
     <button
       className={cn(
@@ -19,7 +29,7 @@ export default function LoginButton({
           ? "border bg-gray-001 border-blue-004 text-blue-004"
           : "bg-blue-004 text-white"
       )}
-      onClick={onClick}
+      onClick={handleClick}
     >
       {text}
     </button>
