@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { PUBLIC_API_URL } from "../config/endpoint";
+import { AuthService } from "../lib/auth";
 
 export interface RequestBase {
   request: string;
@@ -37,17 +38,17 @@ export class Http {
     };
 
     if (authorize) {
-      //   const accessToken = await getToken();
-      //   if (!accessToken) {
-      //     if (typeof window !== "undefined") {
-      //       alert("로그인이 필요해요!");
-      //       window.location.href = "/auth/login";
-      //     } else {
-      //       redirect("/auth/login");
-      //     }
-      //     throw new Error("로그인이 필요합니다.");
-      //   }
-      //   finalHeaders.Authorization = `Bearer ${accessToken}`;
+      const accessToken = await AuthService.getAccessToken();
+      if (!accessToken) {
+        if (typeof window !== "undefined") {
+          alert("로그인이 필요해요!");
+          window.location.href = "/login";
+        } else {
+          redirect("/login");
+        }
+        throw new Error("로그인이 필요합니다.");
+      }
+      finalHeaders.Authorization = `Bearer ${accessToken}`;
     }
 
     return finalHeaders;
@@ -66,17 +67,17 @@ export class Http {
     if (res.status === 401 && authorize) {
       //   await logout();
       if (typeof window !== "undefined") {
-        window.location.href = "/auth/login";
+        window.location.href = "/login";
       } else {
-        redirect("/auth/login");
+        redirect("/login");
       }
     }
 
     if (!res.ok) {
       throw new Error(
         data.message ||
-          options.errorMessage ||
-          `요청에 실패했습니다 (status: ${res.status})`
+        options.errorMessage ||
+        `요청에 실패했습니다 (status: ${res.status})`
       );
     }
 
