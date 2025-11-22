@@ -5,10 +5,21 @@ import { ChevronDown, X } from "lucide-react";
 import FormItem from "./FormItem";
 import { useFormContext } from "./FormProvider";
 import { cn } from "@/shared/lib/cn";
+import { Category } from "../model/form";
+import { useState } from "react";
+
+const CATEGORY_LABEL: Record<Category, string> = {
+  SOCIAL: "사회",
+  POLICY: "정책",
+  ECONOMY: "경제",
+  LOVE: "연애 · 결혼",
+};
 
 function WriteForm() {
-  const { register, isFormValid, watch } = useFormContext();
+  const { register, isFormValid, watch, setValue, errors, isSubmitting } =
+    useFormContext();
   const selectedCategory = watch("category");
+  const [hashtagInput, setHashtagInput] = useState("");
 
   return (
     <>
@@ -20,7 +31,9 @@ function WriteForm() {
                 selectedCategory ? "text-gray-005" : "text-gray-003"
               )}
             >
-              {selectedCategory || "카테고리를 선택해주세요."}
+              {selectedCategory
+                ? CATEGORY_LABEL[selectedCategory]
+                : "카테고리를 선택해주세요."}
             </span>
             <ChevronDown
               size={24}
@@ -38,18 +51,18 @@ function WriteForm() {
           <FormItem.TextField
             placeholder="찬성 의견을 작성해주세요."
             approval
-            {...register("opinion1")}
+            {...register("agree")}
           />
           <FormItem.TextField
             placeholder="반대 의견을 작성해주세요."
             approval={false}
-            {...register("opinion2")}
+            {...register("disagree")}
           />
         </FormItem>
         <FormItem title="뉴스 링크">
           <FormItem.TextField
             placeholder="의견을 나누고 싶은 뉴스기사 링크를 첨부해주세요."
-            {...register("newsLink")}
+            {...register("newsUrl")}
           />
         </FormItem>
       </div>
@@ -61,8 +74,26 @@ function WriteForm() {
         <input
           className="focus:outline-none placeholder:font-regular-14 w-full font-regular-14 placeholder:text-gray-003 mb-[13px]"
           placeholder="#해시태그 #해시태그 #해시태그"
+          value={hashtagInput}
+          onChange={(e) => {
+            const value = e.target.value;
+            setHashtagInput(value);
+            const hashtags = value
+              .split(" ")
+              .map((tag) => tag.trim())
+              .filter((tag) => tag.length > 0);
+            setValue("hashtags", hashtags, { shouldValidate: true });
+          }}
         />
-        <Button type="submit" text="완료" disabled={!isFormValid} />
+        {errors.hashtags && (
+          <p className="text-red-500 text-sm mb-2">{errors.hashtags.message}</p>
+        )}
+        <Button
+          type="submit"
+          text={isSubmitting ? "제출 중..." : "완료"}
+          disabled={!isFormValid || isSubmitting}
+          className="active:brightness-90"
+        />
       </section>
     </>
   );

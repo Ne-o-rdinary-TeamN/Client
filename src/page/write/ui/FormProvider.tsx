@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, ReactNode, useContext } from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 import {
   useForm,
   UseFormRegister,
@@ -11,6 +11,8 @@ import {
 } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormState, formSchema } from "../model/form";
+import { submitWrite } from "../api/submitWrite";
+import { useRouter } from "next/navigation";
 
 interface FormContextType {
   register: UseFormRegister<FormState>;
@@ -19,6 +21,7 @@ interface FormContextType {
   setValue: UseFormSetValue<FormState>;
   watch: UseFormWatch<FormState>;
   isFormValid: boolean;
+  isSubmitting: boolean;
 }
 
 const FormContext = createContext<FormContextType | null>(null);
@@ -32,6 +35,9 @@ export function useFormContext() {
 }
 
 export default function FormProvider({ children }: { children: ReactNode }) {
+  const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -42,17 +48,33 @@ export default function FormProvider({ children }: { children: ReactNode }) {
     resolver: zodResolver(formSchema),
     mode: "onChange",
     defaultValues: {
-      category: "",
       title: "",
-      opinion1: "",
-      opinion2: "",
-      newsLink: "",
+      newsUrl: "",
+      content: "",
+      agree: "",
+      disagree: "",
+      category: undefined,
       hashtags: [],
     },
   });
 
-  const onSubmit = (data: FormState) => {
+  const onSubmit = async (data: FormState) => {
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
     console.log("Form submitted:", data);
+
+    try {
+      const response = await submitWrite(data);
+      if ("isSuccess" in response && response.isSuccess) {
+        alert("글 작성이 완료되었습니다!");
+        router.push("/");
+      }
+    } catch (error) {
+      console.error("제출 중 에러:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -64,6 +86,7 @@ export default function FormProvider({ children }: { children: ReactNode }) {
         setValue,
         watch,
         isFormValid: isValid,
+        isSubmitting,
       }}
     >
       <form onSubmit={handleSubmit(onSubmit)} className="contents">

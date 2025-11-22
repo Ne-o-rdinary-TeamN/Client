@@ -6,9 +6,17 @@ import { useState } from "react";
 import { cn } from "@/shared/lib/cn";
 import { useFormContext } from "./FormProvider";
 import { useRouter } from "next/navigation";
+import { Category } from "../model/form";
+
+const CATEGORY_MAP: Record<string, { value: Category; label: string }> = {
+  SOCIAL: { value: "SOCIAL", label: "사회" },
+  POLICY: { value: "POLICY", label: "정책" },
+  ECONOMY: { value: "ECONOMY", label: "경제" },
+  LOVE: { value: "LOVE", label: "연애 · 결혼" },
+};
 
 export default function CategoryBottomSheet() {
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [selectedCategory, setSelectedCategory] = useState<Category | "">("");
   const { setValue } = useFormContext();
   const router = useRouter();
 
@@ -26,24 +34,24 @@ export default function CategoryBottomSheet() {
       </p>
       <div className="flex items-center gap-2 w-full mb-[22px]">
         <CategoryItem
-          category="사회"
+          category={CATEGORY_MAP.SOCIAL}
           onSelect={setSelectedCategory}
-          isSelected={selectedCategory === "사회"}
+          isSelected={selectedCategory === "SOCIAL"}
         />
         <CategoryItem
-          category="정책"
+          category={CATEGORY_MAP.POLICY}
           onSelect={setSelectedCategory}
-          isSelected={selectedCategory === "정책"}
+          isSelected={selectedCategory === "POLICY"}
         />
         <CategoryItem
-          category="경제"
+          category={CATEGORY_MAP.ECONOMY}
           onSelect={setSelectedCategory}
-          isSelected={selectedCategory === "경제"}
+          isSelected={selectedCategory === "ECONOMY"}
         />
         <CategoryItem
-          category="연애 · 결혼"
+          category={CATEGORY_MAP.LOVE}
           onSelect={setSelectedCategory}
-          isSelected={selectedCategory === "연애 · 결혼"}
+          isSelected={selectedCategory === "LOVE"}
         />
       </div>
       <Button text="완료" onClick={handleComplete} />
@@ -56,8 +64,8 @@ function CategoryItem({
   onSelect,
   isSelected,
 }: {
-  category: string;
-  onSelect: (category: string) => void;
+  category: { value: Category; label: string };
+  onSelect: (category: Category) => void;
   isSelected: boolean;
 }) {
   return (
@@ -67,9 +75,9 @@ function CategoryItem({
         "border border-gray-003 rounded-[20px] bg-gray-001 px-[15px] py-[7.5px]",
         isSelected ? "bg-blue-003 text-white" : "text-gray-005"
       )}
-      onClick={() => onSelect(category)}
+      onClick={() => onSelect(category.value)}
     >
-      <p className="text-center font-medium-14 text-nowrap">{category}</p>
+      <p className="text-center font-medium-14 text-nowrap">{category.label}</p>
     </button>
   );
 }
