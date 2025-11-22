@@ -1,5 +1,5 @@
+import { CategoriesPage } from "@/page/category";
 
+const Page = () => <CategoriesPage />;
 
-export default function Home() {
-  return <div>Category</div>;
-}
+export default Page;
