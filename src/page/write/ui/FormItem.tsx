@@ -1,8 +1,10 @@
 import { cn } from "@/shared/lib/cn";
+import Link from "next/link";
 import {
   ButtonHTMLAttributes,
   InputHTMLAttributes,
   type ReactNode,
+  forwardRef,
 } from "react";
 
 interface FormItemProps {
@@ -16,7 +18,9 @@ interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  replace?: boolean;
   children: ReactNode;
+  href?: string;
 }
 
 export default function FormItem({
@@ -35,29 +39,41 @@ export default function FormItem({
   );
 }
 
-function TextField({ approval = undefined, ...rest }: TextFieldProps) {
-  return (
-    <input
-      className={cn(
-        "rounded-[14px] shadow-[0px_2px_10px_0px_rgba(0,0,0,0.02)] w-full bg-white box-border px-[17px] py-[12px] focus:outline-none placeholder:font-regular-14 font-regular-14 placeholder:text-gray-003",
-        approval !== undefined
-          ? approval === false
-            ? "border border-red-002"
-            : "border border-blue-002"
-          : ""
-      )}
-      {...rest}
-    />
-  );
-}
+const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
+  ({ approval = undefined, ...rest }, ref) => {
+    return (
+      <input
+        ref={ref}
+        className={cn(
+          "rounded-[14px] shadow-[0px_2px_10px_0px_rgba(0,0,0,0.02)] w-full bg-white box-border px-[17px] py-[12px] focus:outline-none placeholder:font-regular-14 font-regular-14 placeholder:text-gray-003",
+          approval !== undefined
+            ? approval === false
+              ? "border border-red-002"
+              : "border border-blue-002"
+            : ""
+        )}
+        {...rest}
+      />
+    );
+  }
+);
 
-function Button({ children, ...rest }: ButtonProps) {
+TextField.displayName = "TextField";
+
+function Button({
+  replace = false,
+  href = "",
+  children,
+  ...rest
+}: ButtonProps) {
   return (
     <button
-      className="rounded-[14px] text-start relative shadow-[0px_2px_10px_0px_rgba(0,0,0,0.02)] w-full bg-white box-border px-[17px] py-3 focus:outline-none font-regular-14 text-gray-003"
+      className="rounded-[14px] text-start relative shadow-[0px_2px_10px_0px_rgba(0,0,0,0.02)] w-full bg-white box-border px-[17px] py-3 focus:outline-none font-regular-14 active:brightness-98 text-gray-003"
       {...rest}
     >
-      {children}
+      <Link replace={replace} href={href}>
+        {children}
+      </Link>
     </button>
   );
 }
