@@ -58,8 +58,6 @@ export default function JoinPage() {
           type="password"
           placeholder="비밀번호"
           onNext={async (password) => {
-            alert(JSON.stringify(context));
-            alert(password);
             const result = await submitJoin({
               ...context,
               password,
