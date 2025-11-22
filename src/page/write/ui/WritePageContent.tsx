@@ -5,15 +5,8 @@ import { ChevronDown, X } from "lucide-react";
 import FormItem from "./FormItem";
 import { useFormContext } from "./FormProvider";
 import { cn } from "@/shared/lib/cn";
-import { Category } from "../model/form";
+import { CATEGORY_LABEL } from "@/shared/model/category";
 import { useState } from "react";
-
-const CATEGORY_LABEL: Record<Category, string> = {
-  SOCIAL: "사회",
-  POLICY: "정책",
-  ECONOMY: "경제",
-  LOVE: "연애 · 결혼",
-};
 
 function WriteForm() {
   const { register, isFormValid, watch, setValue, errors, isSubmitting } =

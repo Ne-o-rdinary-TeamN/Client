@@ -19,4 +19,3 @@ export const formSchema = z.object({
 });
 
 export type FormState = z.infer<typeof formSchema>;
-export type Category = "SOCIAL" | "POLICY" | "ECONOMY" | "LOVE";
