@@ -1,0 +1,61 @@
+import { EllipsisVertical, ThumbsDown, ThumbsUp } from "lucide-react";
+import Image from "next/image";
+
+export default function Discussion() {
+  return (
+    <div className="mt-6 px-4 pb-[calc(var(--spacing-footer)+24px)]">
+      <h1 className="font-semibold-16 text-gray-006 pl-2 mt-6">토론 게시판</h1>
+      <div className="flex flex-col gap-2.5 text-gray-006 font-regular-12 mt-3">
+        <DiscussionItem />
+        <DiscussionItem />
+        <DiscussionItem />
+        <DiscussionItem />
+        <DiscussionItem />
+      </div>
+    </div>
+  );
+}
+
+function DiscussionItem() {
+  return (
+    <div className="w-full h-32 bg-white flex flex-col rounded-[14px] px-side py-[15px] shadow-[0px_4px_10px_0px_rgba(0,0,0,0.04)]">
+      <div className="flex items-center w-full gap-2.5">
+        <Image
+          src="/images/approve.svg"
+          alt="approval"
+          width={28}
+          height={25}
+        />
+        <span className="font-semibold-13 text-gray-005">나도 찬성한다</span>
+        <div className="flex-1 flex items-center justify-end">
+          <button className="group">
+            <EllipsisVertical
+              size={18}
+              className="text-gray-004 flex-1 group-active:text-gray-003"
+            />
+          </button>
+        </div>
+      </div>
+      <div className="line-clamp-2 font-regular-13 text-gray-005 mt-2.5">
+        새벽배송 금지 소비자도 택배기사도 “금지 안돼” 새벽배송 금지 소비자도
+        택배기사도 “금지 안돼” 새벽배송 금지 소비자도 택배기사도 “금지 안돼”
+        새벽배송 금지 소비자도 택배기사도 “금지 안돼” 새벽배송 금지 소비자도
+        택배기사도 “금지 안돼” 새벽배송 금지 소비자도 택배기사도 “금지 안돼”
+        새벽배송 금지 소비자도 택배기사도 “금지 안돼” 새벽배송 금지 소비자도
+        택배기사도 “금지 안돼” 새벽배송 금지 소비자도 택배기사도 “금지 안돼”
+      </div>
+      <div className="flex-1 flex flex-col justify-end items-end">
+        <div className="flex items-center gap-2">
+          <button className="font-regular-12 flex items-center gap-1 text-gray-004">
+            <ThumbsUp size={14} className="text-red-003" />
+            <span>12</span>
+          </button>
+          <button className="font-regular-12 flex items-center gap-1 text-gray-004">
+            <ThumbsDown size={14} className="text-blue-003" />
+            <span>5</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
