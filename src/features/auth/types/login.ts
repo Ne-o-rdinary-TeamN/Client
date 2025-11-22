@@ -1,9 +1,11 @@
 export type LoginRequest = {
-  userName: string;
+  userId: string;
   password: string;
 };
 
 export type LoginResponse = {
-  token: string;
-  email: string;
+  tokenType: string;
+  accessToken: string;
+  expiresIn: number;
+  userPk: number;
 };
