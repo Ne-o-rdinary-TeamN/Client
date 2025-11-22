@@ -32,9 +32,9 @@ export default function CategoryBottomSheet() {
           isSelected={selectedCategory === "SOCIAL"}
         />
         <CategoryItem
-          category={CATEGORY_MAP.POLICY}
+          category={CATEGORY_MAP.POLITICS}
           onSelect={setSelectedCategory}
-          isSelected={selectedCategory === "POLICY"}
+          isSelected={selectedCategory === "POLITICS"}
         />
         <CategoryItem
           category={CATEGORY_MAP.ECONOMY}

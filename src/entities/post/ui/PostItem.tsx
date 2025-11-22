@@ -15,11 +15,12 @@ export default function PostItem({
   disagreeCount,
   hashtags,
   participated,
+  postPk,
 }: Post) {
   return (
-    <div className="w-full h-64 bg-white rounded-2xl">
-      <div className="flex flex-col  px-4">
-        <div className="flex items-center justify-center gap-2 mt-3">
+    <div className="w-full h-fit py-4.5 bg-white rounded-2xl">
+      <div className="flex flex-col px-4">
+        <div className="flex items-center justify-center gap-2">
           <UserIcon
             className={cn(participated ? "text-blue-002" : "text-gray-003")}
           />
@@ -36,11 +37,11 @@ export default function PostItem({
           {title}
         </p>
         <div className="flex items-center justify-center gap-2 mt-1">
-          {hashtags.map((hashtag) => (
+          {/* {hashtags.map((hashtag) => (
             <p className="font-regular-13 text-gray-004" key={hashtag}>
               #{hashtag}
             </p>
-          ))}
+          ))} */}
         </div>
         {participated ? (
           <ResultButton
@@ -59,6 +60,7 @@ export default function PostItem({
           size="lg"
           variant="gray"
           className="w-full mt-2 font-semibold-14"
+          href={`/board/${postPk}`}
         />
       </div>
     </div>

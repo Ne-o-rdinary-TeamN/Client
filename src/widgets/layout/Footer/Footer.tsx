@@ -10,7 +10,7 @@ function Footer() {
   const pathname = usePathname();
 
   const isHomeActive = pathname === "/";
-  const isCategoryActive = pathname === "/category";
+  const isCategoryActive = pathname.startsWith("/posts");
   const isMypageActive = pathname === "/mypage";
 
   return (
@@ -26,7 +26,7 @@ function Footer() {
           <span className="font-regular-12">홈</span>
         </Link>
         <Link
-          href="/category"
+          href="/posts/SOCIAL"
           className={`${
             isCategoryActive ? "text-blue-004" : "text-gray-003"
           } flex flex-col items-center`}

@@ -10,7 +10,7 @@ export const formSchema = z.object({
   content: z.string().optional().or(z.literal("")),
   agree: z.string().min(10, "찬성 의견은 최소 10자 이상이어야 합니다."),
   disagree: z.string().min(10, "반대 의견은 최소 10자 이상이어야 합니다."),
-  category: z.enum(["SOCIAL", "POLICY", "ECONOMY", "LOVE"], {
+  category: z.enum(["SOCIAL", "POLITICS", "ECONOMY", "LOVE"], {
     message: "카테고리를 선택해주세요.",
   }),
   hashtags: z
