@@ -9,4 +9,5 @@ export type Post = {
   disagreeCount: number;
   hashtags: string[];
   participated: boolean;
+  postPk: number;
 };

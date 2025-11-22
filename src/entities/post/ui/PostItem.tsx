@@ -15,6 +15,7 @@ export default function PostItem({
   disagreeCount,
   hashtags,
   participated,
+  postPk,
 }: Post) {
   return (
     <div className="w-full h-64 bg-white rounded-2xl">
@@ -59,6 +60,7 @@ export default function PostItem({
           size="lg"
           variant="gray"
           className="w-full mt-2 font-semibold-14"
+          href={`/board/${postPk}`}
         />
       </div>
     </div>
