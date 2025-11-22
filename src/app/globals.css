@@ -66,91 +66,114 @@
 }
 
 @layer {
+  .font-regular-12 {
+    font-size: 12px;
+    font-weight: var(--font-regular);
+    line-height: var(--line-height-12);
+  }
+
   .font-regular-13 {
     font-size: 13px;
     font-weight: var(--font-regular);
     line-height: var(--line-height-13);
   }
+
   .font-regular-14 {
     font-size: 14px;
     font-weight: var(--font-regular);
     line-height: var(--line-height-14);
   }
+
   .font-regular-15 {
     font-size: 15px;
     font-weight: var(--font-regular);
     line-height: var(--line-height-15);
   }
+
   .font-regular-16 {
     font-size: 16px;
     font-weight: var(--font-regular);
     line-height: var(--line-height-16);
   }
+
   .font-regular-18 {
     font-size: 18px;
     font-weight: var(--font-regular);
     line-height: var(--line-height-18);
   }
+
   .font-medium-13 {
     font-size: 13px;
     font-weight: var(--font-medium);
     line-height: var(--line-height-13);
   }
+
   .font-medium-14 {
     font-size: 14px;
     font-weight: var(--font-medium);
     line-height: var(--line-height-14);
   }
+
   .font-medium-15 {
     font-size: 15px;
     font-weight: var(--font-medium);
     line-height: var(--line-height-15);
   }
+
   .font-medium-16 {
     font-size: 16px;
     font-weight: var(--font-medium);
     line-height: var(--line-height-16);
   }
+
   .font-medium-18 {
     font-size: 18px;
     font-weight: var(--font-medium);
     line-height: var(--line-height-18);
   }
+
   .font-semibold-13 {
     font-size: 13px;
     font-weight: var(--font-semibold);
     line-height: var(--line-height-13);
   }
+
   .font-semibold-14 {
     font-size: 14px;
     font-weight: var(--font-semibold);
     line-height: var(--line-height-14);
   }
+
   .font-semibold-15 {
     font-size: 15px;
     font-weight: var(--font-semibold);
     line-height: var(--line-height-15);
   }
+
   .font-semibold-16 {
     font-size: 16px;
     font-weight: var(--font-semibold);
     line-height: var(--line-height-16);
   }
+
   .font-semibold-18 {
     font-size: 18px;
     font-weight: var(--font-semibold);
     line-height: var(--line-height-18);
   }
+
   .font-semibold-20 {
     font-size: 20px;
     font-weight: var(--font-semibold);
     line-height: var(--line-height-20);
   }
+
   .font-bold-20 {
     font-size: 20px;
     font-weight: var(--font-bold);
     line-height: var(--line-height-20);
   }
+
   .font-bold-22 {
     font-size: 22px;
     font-weight: var(--font-bold);
@@ -162,4 +185,13 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Pretendard Variable, Pretendard, Arial, Helvetica, sans-serif;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
