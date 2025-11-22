@@ -14,6 +14,7 @@ export const ENDPOINT = {
     READ_ALL: "/api/posts/list",
   },
   BOARD: {
-    GET_POST: (id: string | number) => `/board/${id}`,
+    POST_DETAIL: (postPk: number) => `/api/posts/${postPk}`,
+    COMMENT_DETAIL: (postPk: number, option: "all" | "agree" | "disagree") => `/api/comments/${postPk}/${option}`,
   },
 };

@@ -1,9 +1,7 @@
 export interface NewsItem {
+  newsPk: number;
   title: string;
-  link?: string;
-  originallink?: string;
-  description?: string;
-  pubDate?: string;
+  url: string;
 }
 
 export interface NewsResponse {
