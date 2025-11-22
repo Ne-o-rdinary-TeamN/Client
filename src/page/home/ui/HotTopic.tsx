@@ -8,7 +8,7 @@ const dummyHotTopics = [
   {
     id: 1,
     category: '시사',
-    title: '핫토픽 내용 1',
+    title: '핫토픽 내용 1핫토픽 내용 1핫토픽 내용 1핫토픽 내용 1핫토픽 내용 1',
     commentCount: 256
   },
   {
@@ -55,7 +55,7 @@ function HotTopic() {
               </div>
               <div className='text-white mt-auto flex flex-col gap-2'>
                 <p className="bg-blue-002 w-fit rounded-full px-2.5 py-0.5 text-blue-004">{topic.category}</p>
-                <p className="font-bold-20 text-white">{topic.title}</p>
+                <p className="font-bold-20 text-white line-clamp-2">{topic.title}</p>
                 <div className='flex items-center gap-1'>
                   <Image src="/icons/comment.svg" alt="comment" width={16} height={16} />
                   <p className="text-blue-001">{topic.commentCount}</p>
