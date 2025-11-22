@@ -77,6 +77,8 @@
   --foreground: #171717;
   --spacing-max-width: 360px;
   --spacing-side: 16px;
+  --spacing-header: 80px;
+  --spacing-footer: 72px;
   --blue-001: #e8f2ff;
   --blue-002: #8cc5fd;
   --blue-003: #2e96fd;
@@ -111,6 +113,8 @@
 @theme inline {
   --spacing-max-width: var(--spacing-max-width);
   --spacing-side: var(--spacing-side);
+  --spacing-header: var(--spacing-header);
+  --spacing-footer: var(--spacing-footer);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-blue-001: var(--blue-001);
