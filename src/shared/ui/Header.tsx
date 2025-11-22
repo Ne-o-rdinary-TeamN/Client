@@ -20,7 +20,7 @@ export default function Header({ title, icon, className }: HeaderProps) {
   return (
     <header
       className={cn(
-        "w-full flex items-center justify-center h-[72px] relative",
+        "w-full max-w-max-width mx-auto flex items-center justify-center h-[72px] relative",
         className
       )}
     >
