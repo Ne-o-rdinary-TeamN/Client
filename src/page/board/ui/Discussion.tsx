@@ -1,7 +1,9 @@
 import { EllipsisVertical, ThumbsDown, ThumbsUp } from "lucide-react";
 import Image from "next/image";
+import { getBoardDetail } from '../api/boardDetail';
 
-export default function Discussion() {
+export default async function Discussion({ postPk }: { postPk: number }) {
+
   return (
     <div className="mt-6 px-4 pb-[calc(var(--spacing-footer)+24px)]">
       <h1 className="font-semibold-16 text-gray-006 pl-2 mt-6">토론 게시판</h1>

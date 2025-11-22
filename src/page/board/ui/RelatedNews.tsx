@@ -1,7 +1,13 @@
 import RightArrow from '@/shared/ui/icons/RightArrow'
 import React from 'react'
+import { getBoardDetail } from '../api/boardDetail';
 
-function RelatedNews() {
+async function RelatedNews({ postPk }: { postPk: number }) {
+    const boardDetail = await getBoardDetail(postPk);
+    if (!boardDetail) {
+        return <div>게시글을 불러오는 중 오류가 발생했습니다.</div>;
+    }
+    const { news } = boardDetail;
     return (
         <div className='mt-6 px-4'>
             <div className='flex flex-col gap-2 border border-blue-002 rounded-xl mt-3'>
