@@ -9,6 +9,9 @@ export const ENDPOINT = {
   NEWS: {
     TOP_NEWS: "/api/search/news?display=5",
   },
+  POST: {
+    CREATE: "/api/posts/create",
+  },
   BOARD: {
     GET_POST: (id: string | number) => `/board/${id}`,
   },

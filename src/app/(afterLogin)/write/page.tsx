@@ -1,10 +1,14 @@
-import { Suspense } from "react";
-import { WritePage } from "@/page/write";
+"use client";
+
+import dynamic from "next/dynamic";
+
+const WritePage = dynamic(
+  () => import("@/page/write").then((mod) => ({ default: mod.WritePage })),
+  {
+    ssr: false,
+  }
+);
 
 export default function Page() {
-  return (
-    <Suspense fallback={<div></div>}>
-      <WritePage />
-    </Suspense>
-  );
+  return <WritePage />;
 }
