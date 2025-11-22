@@ -7,7 +7,7 @@ import { type ReactNode } from "react";
 
 interface JoinStepLayoutProps {
   children: ReactNode;
-  type?: "name" | "id" | "password";
+  type?: "name" | "userId" | "password";
 }
 
 export default function JoinStepLayout({
@@ -23,7 +23,7 @@ export default function JoinStepLayout({
   const title = type
     ? type === "name"
       ? "이름을"
-      : type === "id"
+      : type === "userId"
       ? "아이디를"
       : "비밀번호를"
     : "";
