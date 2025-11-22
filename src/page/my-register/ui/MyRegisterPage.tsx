@@ -9,7 +9,7 @@ export default function MyRegisterPage() {
         title="내가 등록한 토론"
         icon={<ChevronLeftIcon className="text-blue-004" size={24} />}
       />
-      <PostListScrollView posts={[]} />
+      {/* <PostListScrollView posts={[]} /> */}
     </div>
   );
 }

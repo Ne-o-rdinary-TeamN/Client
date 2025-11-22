@@ -10,7 +10,7 @@ export default function MyJoinPage() {
         title="내가 참여한 토론"
         icon={<ChevronLeftIcon className="text-blue-004" size={24} />}
       />
-      <PostListScrollView posts={[]} />
+      {/* <PostListScrollView posts={[]} /> */}
     </div>
   );
 }
