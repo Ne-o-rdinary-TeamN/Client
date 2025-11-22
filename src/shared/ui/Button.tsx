@@ -31,7 +31,7 @@ export default function Button({
   return (
     <button
       className={cn(
-        "rounded-[14px] focus:outline-none font-semibold-16 h-[48px] w-full flex items-center justify-center box-border active:brightness-90 px-[22px] py-[15px]",
+        "rounded-[14px] disabled:bg-blue-002 focus:outline-none font-semibold-16 h-[48px] w-full flex items-center justify-center box-border active:brightness-90 px-[22px] py-[15px]",
         className,
         outline
           ? "border bg-gray-001 border-blue-004 text-blue-004"
