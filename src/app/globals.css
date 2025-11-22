@@ -3,6 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --spacing-max-width: 360px;
+  --spacing-side: 16px;
   --blue-001: #e8f2ff;
   --blue-002: #8cc5fd;
   --blue-003: #2e96fd;
@@ -21,9 +23,22 @@
   --gray-008: #191f28;
   --positive: #11d888;
   --negative: #ff5f4e;
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --line-height-13: 18px;
+  --line-height-14: 19px;
+  --line-height-15: 20px;
+  --line-height-16: 21px;
+  --line-height-18: 23px;
+  --line-height-20: 25px;
+  --line-height-22: 27px;
 }
 
 @theme inline {
+  --spacing-max-width: var(--spacing-max-width);
+  --spacing-side: var(--spacing-side);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-blue-001: var(--blue-001);
@@ -44,12 +59,107 @@
   --color-gray-008: var(--gray-008);
   --color-positive: var(--positive);
   --color-negative: var(--negative);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-regular: var(--font-regular);
+  --font-medium: var(--font-medium);
+  --font-semibold: var(--font-semibold);
+  --font-bold: var(--font-bold);
+}
+
+@layer {
+  .font-regular-13 {
+    font-size: 13px;
+    font-weight: var(--font-regular);
+    line-height: var(--line-height-13);
+  }
+  .font-regular-14 {
+    font-size: 14px;
+    font-weight: var(--font-regular);
+    line-height: var(--line-height-14);
+  }
+  .font-regular-15 {
+    font-size: 15px;
+    font-weight: var(--font-regular);
+    line-height: var(--line-height-15);
+  }
+  .font-regular-16 {
+    font-size: 16px;
+    font-weight: var(--font-regular);
+    line-height: var(--line-height-16);
+  }
+  .font-regular-18 {
+    font-size: 18px;
+    font-weight: var(--font-regular);
+    line-height: var(--line-height-18);
+  }
+  .font-medium-13 {
+    font-size: 13px;
+    font-weight: var(--font-medium);
+    line-height: var(--line-height-13);
+  }
+  .font-medium-14 {
+    font-size: 14px;
+    font-weight: var(--font-medium);
+    line-height: var(--line-height-14);
+  }
+  .font-medium-15 {
+    font-size: 15px;
+    font-weight: var(--font-medium);
+    line-height: var(--line-height-15);
+  }
+  .font-medium-16 {
+    font-size: 16px;
+    font-weight: var(--font-medium);
+    line-height: var(--line-height-16);
+  }
+  .font-medium-18 {
+    font-size: 18px;
+    font-weight: var(--font-medium);
+    line-height: var(--line-height-18);
+  }
+  .font-semibold-13 {
+    font-size: 13px;
+    font-weight: var(--font-semibold);
+    line-height: var(--line-height-13);
+  }
+  .font-semibold-14 {
+    font-size: 14px;
+    font-weight: var(--font-semibold);
+    line-height: var(--line-height-14);
+  }
+  .font-semibold-15 {
+    font-size: 15px;
+    font-weight: var(--font-semibold);
+    line-height: var(--line-height-15);
+  }
+  .font-semibold-16 {
+    font-size: 16px;
+    font-weight: var(--font-semibold);
+    line-height: var(--line-height-16);
+  }
+  .font-semibold-18 {
+    font-size: 18px;
+    font-weight: var(--font-semibold);
+    line-height: var(--line-height-18);
+  }
+  .font-semibold-20 {
+    font-size: 20px;
+    font-weight: var(--font-semibold);
+    line-height: var(--line-height-20);
+  }
+  .font-bold-20 {
+    font-size: 20px;
+    font-weight: var(--font-bold);
+    line-height: var(--line-height-20);
+  }
+  .font-bold-22 {
+    font-size: 22px;
+    font-weight: var(--font-bold);
+    line-height: var(--line-height-22);
+  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Pretendard Variable, Pretendard, Arial, Helvetica, sans-serif;
 }
