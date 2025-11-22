@@ -1,19 +1,25 @@
 "use server";
 
 import { LoginRequest, LoginResponse } from "@/features/auth/types/login";
+import { BaseResponse } from "@/shared/api/baseResponse";
 import { Http } from "@/shared/api/http";
 import { ENDPOINT } from "@/shared/config/endpoint";
 import { AuthService } from "@/shared/lib/auth";
 
 export const submitLogin = async (data: LoginRequest) => {
   try {
-    const response = await Http.post<LoginRequest, LoginResponse>({
-      request: ENDPOINT.AUTH.LOGIN,
-      data,
-    });
+    const response = await Http.post<LoginRequest, BaseResponse<LoginResponse>>(
+      {
+        request: ENDPOINT.AUTH.LOGIN,
+        data,
+      }
+    );
 
-    if (response.accessToken) {
-      await AuthService.setTokens(response.accessToken, response.accessToken);
+    if (response.result.accessToken) {
+      await AuthService.setTokens(
+        response.result.accessToken,
+        response.result.accessToken
+      );
       return { success: true };
     }
 

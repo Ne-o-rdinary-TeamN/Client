@@ -11,6 +11,7 @@ export const ENDPOINT = {
   },
   POST: {
     CREATE: "/api/posts/create",
+    READ_ALL: "/api/posts/list",
   },
   BOARD: {
     GET_POST: (id: string | number) => `/board/${id}`,

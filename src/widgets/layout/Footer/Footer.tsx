@@ -35,7 +35,7 @@ function Footer() {
           <span className="font-regular-12">투표</span>
         </Link>
         <Link
-          href="/mypage"
+          href="/my"
           className={`${
             isMypageActive ? "text-blue-004" : "text-gray-003"
           } flex flex-col items-center`}

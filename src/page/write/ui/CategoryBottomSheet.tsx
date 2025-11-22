@@ -6,14 +6,7 @@ import { useState } from "react";
 import { cn } from "@/shared/lib/cn";
 import { useFormContext } from "./FormProvider";
 import { useRouter } from "next/navigation";
-import { Category } from "../model/form";
-
-const CATEGORY_MAP: Record<string, { value: Category; label: string }> = {
-  SOCIAL: { value: "SOCIAL", label: "사회" },
-  POLICY: { value: "POLICY", label: "정책" },
-  ECONOMY: { value: "ECONOMY", label: "경제" },
-  LOVE: { value: "LOVE", label: "연애 · 결혼" },
-};
+import { Category, CATEGORY_MAP } from "@/shared/model/category";
 
 export default function CategoryBottomSheet() {
   const [selectedCategory, setSelectedCategory] = useState<Category | "">("");

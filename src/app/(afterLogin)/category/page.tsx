@@ -1,5 +1,5 @@
-import { CategoriesPage } from "@/page/category";
+import { CategoryPage } from "@/page/category";
 
-const Page = () => <CategoriesPage />;
+const Page = () => <CategoryPage />;
 
 export default Page;
