@@ -1,5 +1,5 @@
-import Homepage from "@/page/home/ui/Homepage";
+import { MypagePage } from "@/page/mypage";
 
-export default function Home() {
-  return <Homepage />;
-}
+const Page = () => <MypagePage />;
+
+export default Page;
