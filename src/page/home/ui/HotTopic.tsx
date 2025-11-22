@@ -3,7 +3,6 @@ import RightArrow from "@/shared/ui/icons/RightArrow";
 import Image from "next/image";
 import React from "react";
 
-// 더미 데이터
 const dummyHotTopics = [
   {
     id: 1,
