@@ -4,6 +4,7 @@ export const ENDPOINT = {
   AUTH: {
     LOGIN: "/api/user/login",
     JOIN: "/api/user/signup",
+    USER_INFO: "/api/user/check",
   },
   NEWS: {
     TOP_NEWS: "/api/search/news?display=5",
