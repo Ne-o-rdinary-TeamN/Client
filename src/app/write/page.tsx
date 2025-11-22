@@ -1,5 +1,10 @@
+import { Suspense } from "react";
 import { WritePage } from "@/page/write";
 
 export default function Page() {
-  return <WritePage />;
+  return (
+    <Suspense fallback={<div></div>}>
+      <WritePage />
+    </Suspense>
+  );
 }
