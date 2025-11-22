@@ -9,7 +9,7 @@ async function RelatedNews({ postPk }: { postPk: number }) {
     if (!boardDetail) {
         return <div>게시글을 불러오는 중 오류가 발생했습니다.</div>;
     }
-    const { news } = boardDetail.result;
+    const { news } = boardDetail?.result || [];
 
     return (
         <div className='mt-6 px-4'>
