@@ -15,7 +15,7 @@ function BoardPage({ postPk }: { postPk: number }) {
             />
             <Vote postPk={postPk} />
             <RelatedNews postPk={postPk} />
-            <Discussion postPk={postPk} />
+            <Discussion />
             <DiscussionFooter />
         </>
     );

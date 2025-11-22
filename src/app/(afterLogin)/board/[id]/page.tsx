@@ -16,7 +16,7 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <>
-      <BoardPage />
+      <BoardPage postPk={Number(id)} />
     </>
   );
 }
