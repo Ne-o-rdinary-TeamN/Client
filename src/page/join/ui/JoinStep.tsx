@@ -2,7 +2,7 @@ import { Button, TextField } from "@/shared/ui";
 import JoinStepLayout from "./JoinStepLayout";
 
 interface JoinStepProps {
-  type: "name" | "email" | "password";
+  type: "name" | "id" | "password";
   placeholder: string;
   onNext: (value: string) => void;
 }
