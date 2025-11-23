@@ -13,6 +13,7 @@ export type BoardDetailResponse = {
         disagreeCount: number;
         agreeRate: number;
         disagreeRate: number;
+        totalCount: number;
         news: NewsResponse[];
     }
 }

@@ -1,7 +1,14 @@
 import { EllipsisVertical, ThumbsDown, ThumbsUp } from "lucide-react";
 import Image from "next/image";
+import { getCommentDetail } from "../api/commentDetail";
 
-export default function Discussion() {
+export default async function Discussion({ postPk }: { postPk: number }) {
+  const agreeCommentDetail = await getCommentDetail(postPk, "AGREE");
+  const disagreeCommentDetail = await getCommentDetail(postPk, "DISAGREE");
+  if (!agreeCommentDetail || !disagreeCommentDetail) {
+    return <div>댓글을 불러오는 중 오류가 발생했습니다.</div>;
+  }
+  console.log(agreeCommentDetail, disagreeCommentDetail);
   return (
     <div className="mt-6 px-4 pb-[calc(var(--spacing-footer)+24px)]">
       <h1 className="font-semibold-16 text-gray-006 pl-2 mt-6">토론 게시판</h1>
