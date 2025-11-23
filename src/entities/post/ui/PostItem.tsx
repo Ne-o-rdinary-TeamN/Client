@@ -102,9 +102,8 @@ function ResultButton({
           />
         )}
         <button
-          className={`${
-            agreeRate >= disagreeRate ? "bg-blue-003" : "bg-blue-001"
-          } text-white rounded-2xl py-2 px-4 w-full font-semibold-14 relative flex flex-col justify-center`}
+          className={`${agreeRate >= disagreeRate ? "bg-blue-003" : "bg-blue-001"
+            } text-white rounded-2xl py-2 px-4 w-full font-semibold-14 relative flex flex-col justify-center`}
           style={{
             height: `${48 + (agreeRate - 50) * 1.2}px`,
             minHeight: "48px",
@@ -118,7 +117,7 @@ function ResultButton({
             명)
           </p>
         </button>
-        <p className="font-semibold-13 text-blue-004 mt-2 ml-2">{agree}</p>
+        <p className="font-semibold-13 text-blue-004 mt-2 ml-2 line-clamp-1">{agree}</p>
       </div>
       <div
         className="relative flex flex-col"
@@ -138,9 +137,8 @@ function ResultButton({
           />
         )}
         <button
-          className={`${
-            agreeRate <= disagreeRate ? "bg-red-003" : "bg-red-001"
-          } text-white rounded-2xl py-2 px-4 w-full font-semibold-14 relative flex flex-col justify-center`}
+          className={`${agreeRate <= disagreeRate ? "bg-red-003" : "bg-red-001"
+            } text-white rounded-2xl py-2 px-4 w-full font-semibold-14 relative flex flex-col justify-center`}
           style={{
             height: `${48 + (disagreeRate - 50) * 1.2}px`,
             minHeight: "50px",
@@ -153,7 +151,7 @@ function ResultButton({
             {disagreeCount}명)
           </p>
         </button>
-        <p className="font-semibold-13 text-red-004 mt-2 mr-2 ml-auto">
+        <p className="font-semibold-13 text-red-004 mt-2 mr-2 ml-auto line-clamp-1">
           {disagree}
         </p>
       </div>
