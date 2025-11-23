@@ -7,7 +7,7 @@ import { CommentDetailResponse } from "../types/board";
 export async function postCommentDetail(postPk: number, content: string) {
     try {
         const response = await Http.post<string, CommentDetailResponse>({
-            request: ENDPOINT.BOARD.COMMENT_DETAIL(postPk),
+            request: ENDPOINT.BOARD.POST_COMMENT(postPk),
             authorize: true,
             data: content,
         });

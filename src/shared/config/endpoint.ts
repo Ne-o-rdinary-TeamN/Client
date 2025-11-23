@@ -18,6 +18,7 @@ export const ENDPOINT = {
   BOARD: {
     POST_DETAIL: (postPk: number) => `/api/posts/${postPk}`,
     COMMENT_DETAIL: (postPk: number, option: "AGREE" | "DISAGREE") => `/api/comment?postPk=${postPk}&option=${option}`,
+    POST_COMMENT: (postPk: number) => `/${postPk}/comment`,
     VOTE_EVENT: "/api/posts/vote",
   },
 };
