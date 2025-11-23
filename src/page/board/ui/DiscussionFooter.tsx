@@ -2,7 +2,7 @@
 
 import { Button } from "@/shared/ui";
 import { useState, useEffect } from "react";
-import { postBoardDetail } from "../api/commentDetail";
+import { postCommentDetail } from "../api/commentDetail";
 
 export default function DiscussionFooter({ postPk }: { postPk: number }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +34,7 @@ export default function DiscussionFooter({ postPk }: { postPk: number }) {
   const handleSubmit = async () => {
     // 댓글 등록 로직
     console.log("댓글 등록:", postPk, comment);
-    const response = await postBoardDetail(postPk, comment);
+    const response = await postCommentDetail(postPk, comment);
     if (response) {
       console.log("댓글 등록 성공:", response);
     } else {

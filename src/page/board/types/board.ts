@@ -13,6 +13,7 @@ export type BoardDetailResponse = {
         disagreeCount: number;
         agreeRate: number;
         disagreeRate: number;
+        totalCount: number;
         news: NewsResponse[];
     }
 }
@@ -24,6 +25,13 @@ export type NewsResponse = {
 }
 
 export type CommentDetailResponse = {
+    result: {
+        list: CommentItem[];
+    }
+
+}
+
+export type CommentItem = {
     commentPk: number;
     userId: string;
     content: string;
