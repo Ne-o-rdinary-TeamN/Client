@@ -25,6 +25,13 @@ export type NewsResponse = {
 }
 
 export type CommentDetailResponse = {
+    result: {
+        list: CommentItem[];
+    }
+
+}
+
+export type CommentItem = {
     commentPk: number;
     userId: string;
     content: string;
