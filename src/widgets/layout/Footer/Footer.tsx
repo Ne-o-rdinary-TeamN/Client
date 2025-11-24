@@ -11,7 +11,7 @@ function Footer() {
 
   const isHomeActive = pathname === "/";
   const isCategoryActive = pathname.startsWith("/posts");
-  const isMypageActive = pathname === "/mypage";
+  const isMypageActive = pathname === "/my";
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl py-3 pt-2.5 h-footer box-border max-w-max-width mx-auto z-20">
@@ -19,9 +19,8 @@ function Footer() {
         <Link
           prefetch
           href="/"
-          className={`${
-            isHomeActive ? "text-blue-004" : "text-gray-003"
-          } flex flex-col items-center`}
+          className={`${isHomeActive ? "text-blue-004" : "text-gray-003"
+            } flex flex-col items-center`}
         >
           <HomeIcon isActive={isHomeActive} />
           <span className="font-regular-12">홈</span>
@@ -29,9 +28,8 @@ function Footer() {
         <Link
           prefetch
           href="/posts/SOCIAL"
-          className={`${
-            isCategoryActive ? "text-blue-004" : "text-gray-003"
-          } flex flex-col items-center`}
+          className={`${isCategoryActive ? "text-blue-004" : "text-gray-003"
+            } flex flex-col items-center`}
         >
           <CategoryIcon isActive={isCategoryActive} />
           <span className="font-regular-12">투표</span>
@@ -39,9 +37,8 @@ function Footer() {
         <Link
           prefetch
           href="/my"
-          className={`${
-            isMypageActive ? "text-blue-004" : "text-gray-003"
-          } flex flex-col items-center`}
+          className={`${isMypageActive ? "text-blue-004" : "text-gray-003"
+            } flex flex-col items-center`}
         >
           <MypageIcon isActive={isMypageActive} />
           <span className="font-regular-12">마이페이지</span>
