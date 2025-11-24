@@ -1,10 +1,14 @@
 "use client";
 
 import { Button } from "@/shared/ui";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useTransition, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { postCommentDetail } from "../api/commentDetail";
 
 export default function DiscussionFooter({ postPk }: { postPk: number }) {
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const lastSubmitTimeRef = useRef(0);
   const [isOpen, setIsOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [comment, setComment] = useState("");
@@ -34,15 +38,26 @@ export default function DiscussionFooter({ postPk }: { postPk: number }) {
   };
 
   const handleSubmit = async () => {
-    // 댓글 등록 로직
-    console.log("댓글 등록:", postPk, comment);
-    const response = await postCommentDetail(postPk, comment);
+    const trimmed = comment.trim();
+    if (!trimmed) return;
+
+    const now = Date.now();
+    if (now - lastSubmitTimeRef.current < 1000) {
+      return;
+    }
+    lastSubmitTimeRef.current = now;
+
+    const response = await postCommentDetail(postPk, trimmed);
     if (response) {
+      startTransition(() => {
+        router.refresh();
+      });
       console.log("댓글 등록 성공:", response);
+      handleClose();
     } else {
       console.log("댓글 등록 실패");
+      alert("댓글 등록에 실패했어요. 잠시 후 다시 시도해주세요.");
     }
-    handleClose();
   };
 
   return (
@@ -50,27 +65,24 @@ export default function DiscussionFooter({ postPk }: { postPk: number }) {
       {/* 배경 - 모달이 열릴 때만 표시 */}
       {isOpen && (
         <div
-          className={`fixed inset-0 bg-black/50 transition-opacity duration-300 z-40 ${
-            isAnimating ? "opacity-100" : "opacity-0"
-          }`}
+          className={`fixed inset-0 bg-black/50 transition-opacity duration-300 z-40 ${isAnimating ? "opacity-100" : "opacity-0"
+            }`}
           onClick={handleClose}
         />
       )}
 
       {/* Footer - input이 올라가면서 확장 */}
       <footer
-        className={`fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl shadow-[0px_-4px_20px_0px_rgba(0,0,0,0.06)] max-w-max-width mx-auto transition-all duration-300 z-50 ${
-          isAnimating ? "h-[28vh]" : "h-footer"
-        }`}
+        className={`fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl shadow-[0px_-4px_20px_0px_rgba(0,0,0,0.06)] max-w-max-width mx-auto transition-all duration-300 z-50 ${isAnimating ? "h-[28vh]" : "h-footer"
+          }`}
       >
         <div className="flex flex-col h-full px-5 pt-6 pb-[10px]">
           {/* 설명칸 - 댓글창 아래에서 시작해서 위로 올라옴 */}
           <div
-            className={`overflow-y-auto transition-all duration-300 ${
-              isAnimating
-                ? "opacity-100 translate-y-0 max-h-[150px] mb-4"
-                : "opacity-0 translate-y-full max-h-0 mb-0"
-            }`}
+            className={`overflow-y-auto transition-all duration-300 ${isAnimating
+              ? "opacity-100 translate-y-0 max-h-[150px] mb-4"
+              : "opacity-0 translate-y-full max-h-0 mb-0"
+              }`}
             style={{
               transitionDelay: isAnimating ? "200ms" : "0ms",
             }}
@@ -100,21 +112,19 @@ export default function DiscussionFooter({ postPk }: { postPk: number }) {
               <textarea
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
-                className={`w-full rounded-xl bg-gray-002 font-regular-14 placeholder:text-gray-003 px-4 py-3 resize-none focus:outline-none focus:ring-2 focus:ring-blue-004 transition-all duration-300 ${
-                  isAnimating ? "min-h-[40px]" : "min-h-0"
-                }`}
+                className={`w-full rounded-xl bg-gray-002 font-regular-14 placeholder:text-gray-003 px-4 py-3 resize-none focus:outline-none focus:ring-2 focus:ring-blue-004 transition-all duration-300 ${isAnimating ? "min-h-[40px]" : "min-h-0"
+                  }`}
                 placeholder="의견을 작성해주세요..."
                 autoFocus
               />
             )}
             <Button
               size="sm"
-              className={`rounded-full font-semibold-14 transition-all duration-300 ${
-                isAnimating ? "h-auto" : "h-full"
-              }`}
+              className={`rounded-full font-semibold-14 transition-all duration-300 ${isAnimating ? "h-auto" : "h-full"
+                }`}
               text="등록"
               onClick={isOpen ? handleSubmit : undefined}
-              disabled={isOpen && !comment.trim()}
+              disabled={isPending || (isOpen && !comment.trim())}
             />
           </div>
         </div>

@@ -6,10 +6,10 @@ import { CommentDetailResponse } from "../types/board";
 
 export async function postCommentDetail(postPk: number, content: string) {
     try {
-        const response = await Http.post<string, CommentDetailResponse>({
+        const response = await Http.post<{ content: string }, CommentDetailResponse>({
             request: ENDPOINT.BOARD.POST_COMMENT(postPk),
             authorize: true,
-            data: content,
+            data: { content },
         });
         return response;
     } catch (error) {
@@ -18,7 +18,7 @@ export async function postCommentDetail(postPk: number, content: string) {
     }
 }
 
-export async function getCommentDetail(postPk: number, opinion: "AGREE" | "DISAGREE") {
+export async function getCommentDetail(postPk: number, opinion: "AGREE" | "DISAGREE" | "ALL") {
     try {
         const response = await Http.get<CommentDetailResponse>({
             request: ENDPOINT.BOARD.COMMENT_DETAIL(postPk, opinion),
