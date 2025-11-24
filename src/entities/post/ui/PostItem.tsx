@@ -112,7 +112,7 @@ function ResultButton({
         >
           <h2>찬성</h2>
           <p className="font-regular-12 text-gray-001">
-            {agreeRate}%(
+            {agreeRate / 100}%(
             {agreeCount}
             명)
           </p>
@@ -147,7 +147,7 @@ function ResultButton({
         >
           <h2>반대</h2>
           <p className="font-regular-12 text-gray-001">
-            {disagreeRate}%(
+            {disagreeRate / 100}%(
             {disagreeCount}명)
           </p>
         </button>

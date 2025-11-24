@@ -54,7 +54,7 @@ export default function MyJoinPostList({
       }
     };
   }, [userPk, page, isLoading, isLast]);
-
+  console.log(posts);
   return (
     <div className="mt-4 flex flex-col gap-4 pb-20">
       {posts.length > 0 ? (

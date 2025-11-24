@@ -11,9 +11,6 @@ export async function postVoteEvent(postPk: number, opinion: "AGREE" | "DISAGREE
             opinion,
         };
 
-        console.log("투표 요청 데이터:", req);
-
-        // 쿼리 파라미터로 URL에 추가
         const url = new URL(ENDPOINT.BOARD.VOTE_EVENT, PUBLIC_API_URL);
         url.searchParams.append("postPk", postPk.toString());
         url.searchParams.append("opinion", opinion);
@@ -23,7 +20,6 @@ export async function postVoteEvent(postPk: number, opinion: "AGREE" | "DISAGREE
             authorize: true,
         });
 
-        console.log("투표 응답:", response);
         return response;
     } catch (error) {
         console.error("투표 중 오류가 발생했습니다:", error);
