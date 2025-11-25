@@ -9,15 +9,20 @@ import Logo from "../../../../public/icons/Logo.svg";
 function Homepage() {
   return (
     <>
-      <div className="flex flex-col h-screen overflow-y-auto scrollbar-hide relative">
-        <div className="fixed w-max-width mx-auto top-0 flex py-6 px-side bg-gray-002  h-header z-20">
+      <main className="flex flex-col h-screen overflow-y-auto scrollbar-hide relative">
+        <header className="fixed w-max-width mx-auto top-0 flex py-6 px-side bg-gray-002  h-header z-20">
           <Image src={Logo} alt="logo" width={114} height={30} />
-        </div>
-        <HotTopic />
-        <HotNews />
+        </header>
+        <section aria-label="Hot topics">
+          <HotTopic />
+        </section>
+        <section aria-label="Hot news">
+          <HotNews />
+        </section>
         <Link
           href="/write"
           className="fixed bottom-[83px] right-side active:brightness-90"
+          aria-label="글쓰기 페이지로 이동"
         >
           <div className="px-[18px] py-3 bg-blue-600 rounded-3xl shadow-[0px_4px_10px_0px_rgba(0,0,0,0.15)] inline-flex justify-center items-center gap-2">
             <Image
@@ -31,7 +36,7 @@ function Homepage() {
             </div>
           </div>
         </Link>
-      </div>
+      </main>
       <Footer />
     </>
   );

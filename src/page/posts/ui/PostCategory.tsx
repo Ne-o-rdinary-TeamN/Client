@@ -8,13 +8,13 @@ export default function PostCategory({
 }) {
   return (
     <div className="flex mt-header gap-2 rounded-xl font-medium-14">
-      {CATEGORIES.map((category) => {
+      {CATEGORIES.map((category, index) => {
         const isSelected = selectedCategory === category.value;
         return (
           <Button
             size="sm"
             text={category.label}
-            key={category.value}
+            key={`${category.value}-${index}`}
             variant={isSelected ? "active" : "secondary"}
             href={`/posts/${category.value}`}
           />
