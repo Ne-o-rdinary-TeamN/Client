@@ -7,7 +7,7 @@ export default function PostCategory({
   selectedCategory: Category;
 }) {
   return (
-    <div className="flex mt-header gap-2 rounded-xl font-medium-14">
+    <div className="flex mt-18 gap-2 rounded-xl font-medium-14">
       {CATEGORIES.map((category) => {
         const isSelected = selectedCategory === category.value;
         return (

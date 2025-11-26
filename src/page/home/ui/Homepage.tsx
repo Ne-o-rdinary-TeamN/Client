@@ -10,7 +10,7 @@ function Homepage() {
   return (
     <>
       <main className="flex flex-col h-screen overflow-y-auto scrollbar-hide relative">
-        <header className="fixed w-max-width mx-auto top-0 flex py-6 px-side bg-gray-002  h-header z-20">
+        <header className="fixed w-max-width mx-auto top-0 flex py-6 px-side bg-gray-002 h-header z-20">
           <Image src={Logo} alt="logo" width={114} height={30} />
         </header>
         <section aria-label="Hot topics">

@@ -3,7 +3,6 @@
 import Image from "next/image";
 
 interface VoteButtonsProps {
-    postPk: number;
     agreeRate: number;
     disagreeRate: number;
     agreeCount: number;
@@ -14,7 +13,6 @@ interface VoteButtonsProps {
 }
 
 export default function VoteButtons({
-    postPk,
     agreeRate,
     disagreeRate,
     agreeCount,
