@@ -30,7 +30,6 @@ async function Vote({ postPk }: { postPk: number }) {
                                 ))}
                             </div>
                             <VoteButtons
-                                postPk={postPk}
                                 agreeRate={agreeRate}
                                 disagreeRate={disagreeRate}
                                 agreeCount={agreeCount}
