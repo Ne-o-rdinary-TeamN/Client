@@ -56,7 +56,7 @@ export default function VoteButtons({
                         {agreeRate}%({agreeCount}명)
                     </p>
                 </button>
-                <p className="font-semibold-13 text-blue-004 mt-2 ml-2">
+                <p className="font-semibold-13 text-blue-004 mt-2 ml-2 line-clamp-1">
                     {agree}
                 </p>
             </div>
@@ -93,7 +93,7 @@ export default function VoteButtons({
                         {disagreeRate}%({disagreeCount}명)
                     </p>
                 </button>
-                <p className="font-semibold-13 text-red-004 mt-2 mr-2 ml-auto">
+                <p className="font-semibold-13 text-red-004 mt-2 mr-2 ml-auto line-clamp-1">
                     {disagree}
                 </p>
             </div>

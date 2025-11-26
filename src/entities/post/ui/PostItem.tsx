@@ -68,7 +68,6 @@ export default function PostItem({
     </div>
   );
 }
-
 function ResultButton({
   agreeRate,
   disagreeRate,
@@ -215,3 +214,4 @@ export const ParticipateButton = ({
     </div>
   );
 }
+
