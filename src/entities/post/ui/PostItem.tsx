@@ -3,6 +3,8 @@ import UserIcon from "@/shared/ui/icons/UserIcon";
 import Image from "next/image";
 import type { Post } from "../model/post";
 import { cn } from "@/shared/lib/cn";
+import { postVoteEvent } from "@/page/board/api/voteEvent";
+import { useRouter } from "next/navigation";
 
 export default function PostItem({
   title,
@@ -53,7 +55,7 @@ export default function PostItem({
             disagreeCount={disagreeCount}
           />
         ) : (
-          <ParticipateButton agree={agree} disagree={disagree} />
+          <ParticipateButton postPk={postPk} agree={agree} disagree={disagree} participated={participated} />
         )}
         <Button
           text="토론하러 가기"
@@ -159,13 +161,27 @@ function ResultButton({
   );
 }
 
-function ParticipateButton({
+export const ParticipateButton = ({
+  postPk,
   agree,
   disagree,
+  participated,
 }: {
+  postPk: number;
   agree: string;
   disagree: string;
-}) {
+  participated: boolean;
+}) => {
+  const router = useRouter();
+  const handleVote = async (opinion: "AGREE" | "DISAGREE") => {
+    const response = await postVoteEvent(postPk, opinion);
+    if (response?.isSuccess) {
+      console.log("투표 성공:", response, postPk, opinion);
+      router.refresh();
+    } else {
+      console.log("투표 실패", response, postPk, opinion);
+    }
+  };
   return (
     <div className="flex w-full items-center gap-2 mt-5">
       <div className="flex-1 relative">
@@ -176,10 +192,10 @@ function ParticipateButton({
           width={41}
           height={36}
         />
-        <button className="bg-linear-to-r from-[#2E96FD] to-[#8CC5FD] text-white rounded-2xl py-2 px-4 w-full h-13 font-semibold-14 relative">
+        <button className={`bg-linear-to-r from-[#2E96FD] to-[#8CC5FD] text-white rounded-2xl py-2 px-4 w-full h-13 font-semibold-14 relative ${participated ? "cursor-not-allowed" : ""}`} onClick={() => handleVote("AGREE")}>
           <h2>찬성하기</h2>
         </button>
-        <p className="font-semibold-13 text-blue-004 mt-2 ml-2">{agree}</p>
+        <p className="font-semibold-13 text-blue-004 mt-2 ml-2 line-clamp-1">{agree}</p>
       </div>
       <div className="flex-1 flex flex-col relative">
         <Image
@@ -189,10 +205,10 @@ function ParticipateButton({
           width={41}
           height={36}
         />
-        <button className="bg-linear-to-r from-[#FFA2AA] to-[#FB6F7A] text-white rounded-2xl py-2 px-4 w-full h-13 font-semibold-14 relative">
+        <button className={`bg-linear-to-r from-[#FFA2AA] to-[#FB6F7A] text-white rounded-2xl py-2 px-4 w-full h-13 font-semibold-14 relative ${participated ? "cursor-not-allowed" : ""}`} onClick={() => handleVote("DISAGREE")}>
           <h2>반대하기</h2>
         </button>
-        <p className="font-semibold-13 text-red-004 mt-2 mr-2 ml-auto">
+        <p className="font-semibold-13 text-red-004 mt-2 mr-2 ml-auto line-clamp-1">
           {disagree}
         </p>
       </div>

@@ -2,6 +2,7 @@ import UserIcon from "@/shared/ui/icons/UserIcon";
 import React from "react";
 import { getBoardDetail } from "../api/boardDetail";
 import VoteButtons from "./VoteButtons";
+import VoteModal from "./VoteModal";
 
 async function Vote({ postPk }: { postPk: number }) {
     const boardDetail = await getBoardDetail(postPk);
@@ -21,21 +22,45 @@ async function Vote({ postPk }: { postPk: number }) {
                     <p className="font-bold-20 text-gray-007 text-center mt-3">
                         {title}
                     </p>
-                    <div className="flex items-center justify-center gap-2 mt-1">
-                        {hashtags.map((hashtag: string) => (
-                            <p className="font-regular-13 text-gray-004" key={hashtag}>#{hashtag}</p>
-                        ))}
+                    <div className="relative mt-1">
+                        <div className={`space-y-5 ${!participated ? "blur-sm pointer-events-none" : ""}`}>
+                            <div className="flex items-center justify-center gap-2">
+                                {hashtags.map((hashtag: string, index: number) => (
+                                    <p className="font-regular-13 text-gray-004" key={`${hashtag}-${index}`}>#{hashtag}</p>
+                                ))}
+                            </div>
+                            <VoteButtons
+                                postPk={postPk}
+                                agreeRate={agreeRate}
+                                disagreeRate={disagreeRate}
+                                agreeCount={agreeCount}
+                                disagreeCount={disagreeCount}
+                                agree={agree}
+                                disagree={disagree}
+                                participated={participated}
+                            />
+                        </div>
+                        {!participated && (
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="bg-white flex flex-col items-center justify-center gap-2 px-4 py-4 rounded-2xl shadow-lg border border-gray-002">
+                                    <p className="text-gray-006 font-semibold-15">투표하면 결과를 볼 수 있어요!</p>
+                                    <VoteModal
+                                        postPk={postPk}
+                                        agreeRate={agreeRate}
+                                        disagreeRate={disagreeRate}
+                                        agreeCount={agreeCount}
+                                        disagreeCount={disagreeCount}
+                                        agree={agree}
+                                        disagree={disagree}
+                                        participated={participated}
+                                        totalCount={totalCount}
+                                        title={title}
+                                        hashtags={hashtags}
+                                    />
+                                </div>
+                            </div>
+                        )}
                     </div>
-                    <VoteButtons
-                        postPk={postPk}
-                        agreeRate={agreeRate}
-                        disagreeRate={disagreeRate}
-                        agreeCount={agreeCount}
-                        disagreeCount={disagreeCount}
-                        agree={agree}
-                        disagree={disagree}
-                        participated={participated}
-                    />
                 </div>
             </div>
         </div>

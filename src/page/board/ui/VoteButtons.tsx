@@ -1,10 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { postVoteEvent } from "../api/voteEvent";
-import { useRouter } from "next/navigation";
-
-type VoteOpinion = "AGREE" | "DISAGREE";
 
 interface VoteButtonsProps {
     postPk: number;
@@ -27,18 +23,6 @@ export default function VoteButtons({
     disagree,
     participated,
 }: VoteButtonsProps) {
-    const router = useRouter();
-
-    const handleVote = async (opinion: VoteOpinion) => {
-        const response = await postVoteEvent(postPk, opinion);
-        if (response?.isSuccess) {
-            console.log("투표 성공:", response, postPk, opinion);
-            router.refresh();
-        } else {
-            console.log("투표 실패", response, postPk, opinion);
-        }
-    };
-
     return (
         <div className="flex w-full items-end gap-2 mt-5">
             <div
@@ -68,8 +52,6 @@ export default function VoteButtons({
                         minHeight: "48px",
                         maxHeight: "60px",
                     }}
-                    onClick={() => !participated && handleVote("AGREE")}
-                    disabled={participated}
                 >
                     <h2>찬성</h2>
                     <p className="font-regular-12 text-gray-001">
@@ -77,7 +59,7 @@ export default function VoteButtons({
                     </p>
                 </button>
                 <p className="font-semibold-13 text-blue-004 mt-2 ml-2">
-                    과로 방지 가능하다
+                    {agree}
                 </p>
             </div>
             <div
@@ -107,8 +89,6 @@ export default function VoteButtons({
                         minHeight: "50px",
                         maxHeight: "60px",
                     }}
-                    onClick={() => !participated && handleVote("DISAGREE")}
-                    disabled={participated}
                 >
                     <h2>반대</h2>
                     <p className="font-regular-12 text-gray-001">
@@ -116,7 +96,7 @@ export default function VoteButtons({
                     </p>
                 </button>
                 <p className="font-semibold-13 text-red-004 mt-2 mr-2 ml-auto">
-                    소비자가 피해본다
+                    {disagree}
                 </p>
             </div>
         </div>

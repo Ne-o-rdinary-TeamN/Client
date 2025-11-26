@@ -1,15 +1,27 @@
 "use client";
 
-import { Post } from "../model/post";
 import PostItem from "./PostItem";
 import { Category } from "@/shared/model";
 import { useEffect, useMemo, useRef } from "react";
 import { fetchPostListClient } from "../api/fetchPostListClient";
 import { useInfiniteQuery } from "@tanstack/react-query";
+import type { Post } from "../model/post";
+import type { BasePagedResponse } from "@/shared/api/baseResponse";
 
 interface PostListScrollViewProps {
   category: Category;
 }
+
+type PostsInfiniteResponse = BasePagedResponse<Post[]>;
+type PostsQueryResult = {
+  data?: {
+    pages: PostsInfiniteResponse[];
+  };
+  fetchNextPage: () => Promise<unknown>;
+  hasNextPage?: boolean;
+  isFetchingNextPage: boolean;
+  status: "pending" | "success" | "error";
+};
 
 export default function PostListScrollView({
   category,
@@ -26,12 +38,12 @@ export default function PostListScrollView({
     queryKey: ["posts", category],
     queryFn: ({ pageParam = 0 }) => fetchPostListClient(category, pageParam),
     initialPageParam: 0,
-    getNextPageParam: (lastPage) =>
+    getNextPageParam: (lastPage: PostsInfiniteResponse) =>
       lastPage.last ? undefined : lastPage.number + 1,
     staleTime: 1000 * 60,
-  });
+  }) as PostsQueryResult;
 
-  const posts = useMemo(
+  const posts = useMemo<Post[]>(
     () => data?.pages.flatMap((page) => page.content) ?? [],
     [data]
   );
@@ -43,7 +55,7 @@ export default function PostListScrollView({
 
     const currentObserver = observerRef.current;
     const observer = new IntersectionObserver(
-      (entries) => {
+      (entries: IntersectionObserverEntry[]) => {
         const target = entries[0];
         if (target.isIntersecting && hasNextPage && !isFetchingNextPage) {
           fetchNextPage();
