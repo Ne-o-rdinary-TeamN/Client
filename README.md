@@ -167,14 +167,3 @@ npm run format:check
 - [API 문서](./docs/API.md) - API 엔드포인트 및 데이터 구조
 - [컴포넌트 가이드](./docs/COMPONENTS.md) - 주요 컴포넌트 사용법
 
-## 🤝 기여하기
-
-프로젝트에 기여하고 싶으시다면 [CONTRIBUTING.md](./CONTRIBUTING.md)를 참고해주세요.
-
-## 📄 라이선스
-
-이 프로젝트는 비공개 프로젝트입니다.
-
-## 👥 팀
-
-이 프로젝트는 해커톤 팀에 의해 개발되었습니다.
