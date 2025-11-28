@@ -1,35 +1,30 @@
-'use client'
-import React, { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import Modal from '@/shared/ui/Modal'
-import { withdraw } from '../action/submitWithdraw'
+"use client";
+import { useRouter } from "next/navigation";
+import Modal from "@/shared/ui/Modal";
+import { withdraw } from "../action/submitWithdraw";
 
 interface WithdrawModalProps {
-  isOpen: boolean
-  onClose: () => void
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 export default function WithdrawModal({ isOpen, onClose }: WithdrawModalProps) {
-  const router = useRouter()
-  const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter();
 
   const handleConfirm = async () => {
-    setIsLoading(true)
     try {
-      const result = await withdraw()
+      const result = await withdraw();
       if (result.success) {
-        router.push('/')
-        router.refresh()
+        router.push("/");
+        router.refresh();
       } else {
-        alert(result.error || '회원탈퇴에 실패했습니다.')
+        alert(result.error || "회원탈퇴에 실패했습니다.");
       }
     } catch (error) {
-      console.error('Withdraw error:', error)
-      alert('회원탈퇴 중 오류가 발생했습니다.')
-    } finally {
-      setIsLoading(false)
+      console.error("Withdraw error:", error);
+      alert("회원탈퇴 중 오류가 발생했습니다.");
     }
-  }
+  };
 
   return (
     <Modal
@@ -42,6 +37,5 @@ export default function WithdrawModal({ isOpen, onClose }: WithdrawModalProps) {
       onConfirm={handleConfirm}
       variant="danger"
     />
-  )
+  );
 }
-

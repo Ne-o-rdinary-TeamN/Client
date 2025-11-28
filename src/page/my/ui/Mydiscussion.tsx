@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import { useState } from "react";
 import LogoutModal from "@/features/auth/ui/LogoutModal";
 import WithdrawModal from "@/features/auth/ui/WithdrawModal";
 import { UserInfoResponse } from "../model/user";

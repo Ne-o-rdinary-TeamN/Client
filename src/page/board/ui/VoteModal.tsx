@@ -47,14 +47,9 @@ export default function VoteModal({
             onClick={() => setIsOpen(false)}
           />
           <div className="relative bg-white rounded-2xl p-5 w-[90%] max-w-[360px] shadow-lg space-y-4">
-
             <div className="flex items-center justify-center gap-2">
-              <UserIcon
-                className="text-gray-003"
-              />
-              <h2
-                className="font-regular-12 text-gray-004"
-              >
+              <UserIcon className="text-gray-003" />
+              <h2 className="font-regular-12 text-gray-004">
                 {voteProps.totalCount + "명 참여"}
               </h2>
             </div>
@@ -63,16 +58,23 @@ export default function VoteModal({
             </p>
             <div className="flex items-center justify-center gap-2 mt-1">
               {voteProps.hashtags.map((hashtag, index) => (
-                <p className="font-regular-13 text-gray-004" key={`${hashtag}-${index}`}>
+                <p
+                  className="font-regular-13 text-gray-004"
+                  key={`${hashtag}-${index}`}
+                >
                   #{hashtag}
                 </p>
               ))}
             </div>
-            <ParticipateButton postPk={voteProps.postPk} participated={false} agree={voteProps.agree.toString()} disagree={voteProps.disagree.toString()} />
+            <ParticipateButton
+              postPk={voteProps.postPk}
+              participated={false}
+              agree={voteProps.agree.toString()}
+              disagree={voteProps.disagree.toString()}
+            />
           </div>
         </div>
       )}
     </>
   );
 }
-

@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import HomeIcon from "@/shared/ui/icons/HomeIcon";
@@ -19,8 +18,9 @@ function Footer() {
         <Link
           prefetch
           href="/"
-          className={`${isHomeActive ? "text-blue-004" : "text-gray-003"
-            } flex flex-col items-center`}
+          className={`${
+            isHomeActive ? "text-blue-004" : "text-gray-003"
+          } flex flex-col items-center`}
         >
           <HomeIcon isActive={isHomeActive} />
           <span className="font-regular-12">홈</span>
@@ -28,8 +28,9 @@ function Footer() {
         <Link
           prefetch
           href="/posts/SOCIAL"
-          className={`${isCategoryActive ? "text-blue-004" : "text-gray-003"
-            } flex flex-col items-center`}
+          className={`${
+            isCategoryActive ? "text-blue-004" : "text-gray-003"
+          } flex flex-col items-center`}
         >
           <CategoryIcon isActive={isCategoryActive} />
           <span className="font-regular-12">투표</span>
@@ -37,8 +38,9 @@ function Footer() {
         <Link
           prefetch
           href="/my"
-          className={`${isMypageActive ? "text-blue-004" : "text-gray-003"
-            } flex flex-col items-center`}
+          className={`${
+            isMypageActive ? "text-blue-004" : "text-gray-003"
+          } flex flex-col items-center`}
         >
           <MypageIcon isActive={isMypageActive} />
           <span className="font-regular-12">마이페이지</span>

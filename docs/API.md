@@ -27,11 +27,13 @@ GET /api/posts?category={category}&page={page}&size={size}
 ```
 
 **Query Parameters:**
+
 - `category` (string, optional): 카테고리 필터 (사회, 정책, 경제, 연애·결혼)
 - `page` (number, optional): 페이지 번호 (기본값: 0)
 - `size` (number, optional): 페이지 크기 (기본값: 10)
 
 **Response:**
+
 ```typescript
 {
   content: Post[];
@@ -50,9 +52,11 @@ GET /api/posts/{postPk}
 ```
 
 **Path Parameters:**
+
 - `postPk` (number): 게시글 ID
 
 **Response:**
+
 ```typescript
 {
   postPk: number;
@@ -76,6 +80,7 @@ POST /api/posts
 ```
 
 **Request Body:**
+
 ```typescript
 {
   category: string;
@@ -96,10 +101,12 @@ POST /api/posts/vote?postPk={postPk}&opinion={opinion}
 ```
 
 **Query Parameters:**
+
 - `postPk` (number): 게시글 ID
 - `opinion` (string): 투표 의견 ("AGREE" | "DISAGREE")
 
 **Response:**
+
 ```typescript
 {
   isSuccess: boolean;
@@ -115,10 +122,12 @@ GET /api/comment?postPk={postPk}&option={option}
 ```
 
 **Query Parameters:**
+
 - `postPk` (number): 게시글 ID
 - `option` (string): 의견 필터 ("AGREE" | "DISAGREE")
 
 **Response:**
+
 ```typescript
 {
   result: {
@@ -134,9 +143,11 @@ POST /api/posts/{postPk}/comment
 ```
 
 **Path Parameters:**
+
 - `postPk` (number): 게시글 ID
 
 **Request Body:**
+
 ```typescript
 {
   content: string;
@@ -144,6 +155,7 @@ POST /api/posts/{postPk}/comment
 ```
 
 **Response:**
+
 ```typescript
 {
   isSuccess: boolean;
@@ -159,6 +171,7 @@ POST /api/auth/login
 ```
 
 **Request Body:**
+
 ```typescript
 {
   userId: string;
@@ -167,6 +180,7 @@ POST /api/auth/login
 ```
 
 **Response:**
+
 ```typescript
 {
   accessToken: string;
@@ -181,6 +195,7 @@ POST /api/auth/join
 ```
 
 **Request Body:**
+
 ```typescript
 {
   userId: string;
@@ -240,4 +255,3 @@ API는 표준 HTTP 상태 코드를 사용합니다:
   error?: any;
 }
 ```
-

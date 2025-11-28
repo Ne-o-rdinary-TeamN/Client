@@ -68,6 +68,7 @@ Next.js App Router의 라우팅 구조를 정의합니다. 라우트 그룹을 �
 비즈니스 엔티티를 정의합니다. 엔티티는 독립적이고 재사용 가능한 비즈니스 로직을 포함합니다.
 
 **예시: `entities/post/`**
+
 - `api/`: 게시글 관련 API 호출 함수
 - `model/`: 게시글 데이터 타입 정의
 - `ui/`: 게시글 관련 UI 컴포넌트
@@ -77,6 +78,7 @@ Next.js App Router의 라우팅 구조를 정의합니다. 라우트 그룹을 �
 사용자 기능을 구현합니다. 특정 기능의 비즈니스 로직과 UI를 포함합니다.
 
 **예시: `features/auth/`**
+
 - `action/`: 서버 액션 (로그인, 로그아웃 등)
 - `types/`: 인증 관련 타입 정의
 - `ui/`: 인증 관련 UI 컴포넌트 (모달 등)
@@ -86,6 +88,7 @@ Next.js App Router의 라우팅 구조를 정의합니다. 라우트 그룹을 �
 페이지별 로직을 구현합니다. Next.js 라우트와 직접적으로 연결됩니다.
 
 **예시: `page/board/`**
+
 - `api/`: 게시글 상세 페이지에서 사용하는 API 함수
 - `ui/`: 게시글 상세 페이지의 UI 컴포넌트
 - `types/`: 게시글 상세 페이지 관련 타입
@@ -106,6 +109,7 @@ Next.js App Router의 라우팅 구조를 정의합니다. 라우트 그룹을 �
 복합 UI 블록을 정의합니다. 여러 컴포넌트를 조합하여 만든 독립적인 UI 블록입니다.
 
 **예시: `widgets/layout/Footer/`**
+
 - 푸터 위젯 컴포넌트
 
 ## 데이터 흐름
@@ -119,6 +123,7 @@ Next.js App Router의 라우팅 구조를 정의합니다. 라우트 그룹을 �
 ### API 호출 패턴
 
 **Server Component:**
+
 ```typescript
 // entities/post/api/fetchPostList.ts
 export async function fetchPostList(category: Category, page: number) {
@@ -127,6 +132,7 @@ export async function fetchPostList(category: Category, page: number) {
 ```
 
 **Client Component:**
+
 ```typescript
 // entities/post/api/fetchPostListClient.ts
 export async function fetchPostListClient(category: Category, page: number) {
@@ -171,4 +177,3 @@ TypeScript를 엄격 모드로 사용하여 타입 안정성을 보장합니다:
 3. **재사용성**: 공통 컴포넌트는 `shared/ui/`에 배치합니다
 4. **의미론적 HTML**: 적절한 HTML 시맨틱 태그를 사용합니다
 5. **접근성**: ARIA 속성을 적절히 사용합니다
-

@@ -28,20 +28,15 @@ export default function PostListScrollView({
 }: PostListScrollViewProps) {
   const observerRef = useRef<HTMLDivElement>(null);
 
-  const {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-    status,
-  } = useInfiniteQuery({
-    queryKey: ["posts", category],
-    queryFn: ({ pageParam = 0 }) => fetchPostListClient(category, pageParam),
-    initialPageParam: 0,
-    getNextPageParam: (lastPage: PostsInfiniteResponse) =>
-      lastPage.last ? undefined : lastPage.number + 1,
-    staleTime: 1000 * 60,
-  }) as PostsQueryResult;
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
+    useInfiniteQuery({
+      queryKey: ["posts", category],
+      queryFn: ({ pageParam = 0 }) => fetchPostListClient(category, pageParam),
+      initialPageParam: 0,
+      getNextPageParam: (lastPage: PostsInfiniteResponse) =>
+        lastPage.last ? undefined : lastPage.number + 1,
+      staleTime: 1000 * 60,
+    }) as PostsQueryResult;
 
   const posts = useMemo<Post[]>(
     () => data?.pages.flatMap((page) => page.content) ?? [],

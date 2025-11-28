@@ -10,7 +10,5 @@ export interface NewsResponse {
     newsList: NewsItem[];
     start: number;
     total: number;
-  }
-
+  };
 }
-

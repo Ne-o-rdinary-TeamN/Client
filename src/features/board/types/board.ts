@@ -14,4 +14,3 @@ export interface BoardPost {
 export interface BoardPostResponse {
   data: BoardPost;
 }
-

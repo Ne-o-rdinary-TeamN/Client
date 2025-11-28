@@ -1,8 +1,6 @@
 "use server";
 
 import { AuthService } from "@/shared/lib/auth";
-import { Http } from "@/shared/api/http";
-import { ENDPOINT } from "@/shared/config/endpoint";
 
 export async function withdraw() {
   try {
@@ -19,4 +17,3 @@ export async function withdraw() {
     return { success: false, error: "회원탈퇴에 실패했습니다." };
   }
 }
-

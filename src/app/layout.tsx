@@ -17,7 +17,9 @@ export default function RootLayout({
     <html lang="ko">
       <body className="antialiased">
         <ReactQueryProvider>
-          <main className="max-w-max-width mx-auto min-h-screen">{children}</main>
+          <main className="max-w-max-width mx-auto min-h-screen">
+            {children}
+          </main>
         </ReactQueryProvider>
       </body>
     </html>

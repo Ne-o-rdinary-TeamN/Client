@@ -1,5 +1,4 @@
 "use client";
-import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Modal from "@/shared/ui/Modal";
 import { logout } from "../action/submitLogout";
@@ -11,10 +10,8 @@ interface LogoutModalProps {
 
 export default function LogoutModal({ isOpen, onClose }: LogoutModalProps) {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
 
   const handleConfirm = async () => {
-    setIsLoading(true);
     try {
       const result = await logout();
       if (result.success) {
@@ -25,8 +22,6 @@ export default function LogoutModal({ isOpen, onClose }: LogoutModalProps) {
     } catch (error) {
       console.error("Logout error:", error);
       alert("로그아웃 중 오류가 발생했어요.");
-    } finally {
-      setIsLoading(false);
     }
   };
 

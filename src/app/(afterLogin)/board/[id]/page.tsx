@@ -1,4 +1,3 @@
-import React from "react";
 import { BoardPage } from "@/page/board";
 
 interface PageProps {

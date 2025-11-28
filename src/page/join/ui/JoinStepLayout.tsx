@@ -24,8 +24,8 @@ export default function JoinStepLayout({
     ? type === "name"
       ? "이름을"
       : type === "userId"
-      ? "아이디를"
-      : "비밀번호를"
+        ? "아이디를"
+        : "비밀번호를"
     : "";
 
   return (

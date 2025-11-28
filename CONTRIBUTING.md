@@ -5,17 +5,20 @@ Agree 프로젝트에 기여해주셔서 감사합니다! 이 문서는 프로�
 ## 개발 환경 설정
 
 1. 저장소를 클론합니다:
+
 ```bash
 git clone <repository-url>
 cd Client
 ```
 
 2. 의존성을 설치합니다:
+
 ```bash
 npm install
 ```
 
 3. 개발 서버를 실행합니다:
+
 ```bash
 npm run dev
 ```
@@ -72,16 +75,19 @@ feat: 투표 기능 추가
 ## Pull Request 프로세스
 
 1. 새로운 브랜치를 생성합니다:
+
 ```bash
 git checkout -b feature/your-feature-name
 ```
 
 2. 변경사항을 커밋합니다:
+
 ```bash
 git commit -m "feat: 새로운 기능 추가"
 ```
 
 3. 브랜치를 푸시합니다:
+
 ```bash
 git push origin feature/your-feature-name
 ```
@@ -122,4 +128,3 @@ git push origin feature/your-feature-name
 ## 질문하기
 
 질문이 있으시면 Issue를 생성해주세요.
-

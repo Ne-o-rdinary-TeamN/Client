@@ -1,4 +1,3 @@
-import React from "react";
 import HotNews from "./HotNews";
 import HotTopic from "./HotTopic";
 import Footer from "@/widgets/layout/Footer/Footer";

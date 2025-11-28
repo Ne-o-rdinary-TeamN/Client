@@ -9,7 +9,10 @@ export default async function Discussion({ postPk }: { postPk: number }) {
   if (!agreeCommentDetail || !disagreeCommentDetail) {
     return <div>댓글을 불러오는 중 오류가 발생했습니다.</div>;
   }
-  console.log(agreeCommentDetail.result.list, disagreeCommentDetail.result.list);
+  console.log(
+    agreeCommentDetail.result.list,
+    disagreeCommentDetail.result.list
+  );
   return (
     <div className="mt-6 px-4 pb-[calc(var(--spacing-footer)+24px)]">
       <h1 className="font-semibold-16 text-gray-006 pl-2 mt-6">토론 게시판</h1>
@@ -18,20 +21,32 @@ export default async function Discussion({ postPk }: { postPk: number }) {
           <DiscussionItem key={item.commentPk} comment={item} opinion="AGREE" />
         ))}
         {disagreeCommentDetail.result.list.map((item) => (
-          <DiscussionItem key={item.commentPk} comment={item} opinion="DISAGREE" />
+          <DiscussionItem
+            key={item.commentPk}
+            comment={item}
+            opinion="DISAGREE"
+          />
         ))}
       </div>
     </div>
   );
 }
 
-function DiscussionItem({ comment, opinion }: { comment: CommentItem, opinion: "AGREE" | "DISAGREE" }) {
+function DiscussionItem({
+  comment,
+  opinion,
+}: {
+  comment: CommentItem;
+  opinion: "AGREE" | "DISAGREE";
+}) {
   const { content, likes, userId } = comment;
   return (
     <div className="w-full h-32 bg-white flex flex-col rounded-[14px] px-side py-[15px] shadow-[0px_4px_10px_0px_rgba(0,0,0,0.04)]">
       <div className="flex items-center w-full gap-2.5">
         <Image
-          src={opinion === "AGREE" ? "/images/approve.svg" : "/images/opposite.svg"}
+          src={
+            opinion === "AGREE" ? "/images/approve.svg" : "/images/opposite.svg"
+          }
           alt="approval"
           width={28}
           height={25}

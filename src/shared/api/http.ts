@@ -66,8 +66,8 @@ export class Http {
     if (!res.ok) {
       throw new Error(
         data.message ||
-        options.errorMessage ||
-        `요청에 실패했습니다 (status: ${res.status})`
+          options.errorMessage ||
+          `요청에 실패했습니다 (status: ${res.status})`
       );
     }
 

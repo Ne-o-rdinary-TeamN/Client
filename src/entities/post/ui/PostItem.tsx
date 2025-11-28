@@ -40,7 +40,10 @@ export default function PostItem({
         </p>
         <div className="flex items-center justify-center gap-2 mt-1">
           {hashtags.map((hashtag, index) => (
-            <p className="font-regular-13 text-gray-004" key={`${hashtag}-${index}`}>
+            <p
+              className="font-regular-13 text-gray-004"
+              key={`${hashtag}-${index}`}
+            >
               #{hashtag}
             </p>
           ))}
@@ -55,7 +58,12 @@ export default function PostItem({
             disagreeCount={disagreeCount}
           />
         ) : (
-          <ParticipateButton postPk={postPk} agree={agree} disagree={disagree} participated={participated} />
+          <ParticipateButton
+            postPk={postPk}
+            agree={agree}
+            disagree={disagree}
+            participated={participated}
+          />
         )}
         <Button
           text="토론하러 가기"
@@ -103,8 +111,9 @@ function ResultButton({
           />
         )}
         <button
-          className={`${agreeRate >= disagreeRate ? "bg-blue-003" : "bg-blue-001"
-            } text-white rounded-2xl py-2 px-4 w-full font-semibold-14 relative flex flex-col justify-center`}
+          className={`${
+            agreeRate >= disagreeRate ? "bg-blue-003" : "bg-blue-001"
+          } text-white rounded-2xl py-2 px-4 w-full font-semibold-14 relative flex flex-col justify-center`}
           style={{
             height: `${48 + (agreeRate - 50) * 1.2}px`,
             minHeight: "48px",
@@ -118,7 +127,9 @@ function ResultButton({
             명)
           </p>
         </button>
-        <p className="font-semibold-13 text-blue-004 mt-2 ml-2 line-clamp-1">{agree}</p>
+        <p className="font-semibold-13 text-blue-004 mt-2 ml-2 line-clamp-1">
+          {agree}
+        </p>
       </div>
       <div
         className="relative flex flex-col"
@@ -138,8 +149,9 @@ function ResultButton({
           />
         )}
         <button
-          className={`${agreeRate <= disagreeRate ? "bg-red-003" : "bg-red-001"
-            } text-white rounded-2xl py-2 px-4 w-full font-semibold-14 relative flex flex-col justify-center`}
+          className={`${
+            agreeRate <= disagreeRate ? "bg-red-003" : "bg-red-001"
+          } text-white rounded-2xl py-2 px-4 w-full font-semibold-14 relative flex flex-col justify-center`}
           style={{
             height: `${48 + (disagreeRate - 50) * 1.2}px`,
             minHeight: "50px",
@@ -191,10 +203,15 @@ export const ParticipateButton = ({
           width={41}
           height={36}
         />
-        <button className={`bg-linear-to-r from-[#2E96FD] to-[#8CC5FD] text-white rounded-2xl py-2 px-4 w-full h-13 font-semibold-14 relative ${participated ? "cursor-not-allowed" : ""}`} onClick={() => handleVote("AGREE")}>
+        <button
+          className={`bg-linear-to-r from-[#2E96FD] to-[#8CC5FD] text-white rounded-2xl py-2 px-4 w-full h-13 font-semibold-14 relative ${participated ? "cursor-not-allowed" : ""}`}
+          onClick={() => handleVote("AGREE")}
+        >
           <h2>찬성하기</h2>
         </button>
-        <p className="font-semibold-13 text-blue-004 mt-2 ml-2 line-clamp-1">{agree}</p>
+        <p className="font-semibold-13 text-blue-004 mt-2 ml-2 line-clamp-1">
+          {agree}
+        </p>
       </div>
       <div className="flex-1 flex flex-col relative">
         <Image
@@ -204,7 +221,10 @@ export const ParticipateButton = ({
           width={41}
           height={36}
         />
-        <button className={`bg-linear-to-r from-[#FFA2AA] to-[#FB6F7A] text-white rounded-2xl py-2 px-4 w-full h-13 font-semibold-14 relative ${participated ? "cursor-not-allowed" : ""}`} onClick={() => handleVote("DISAGREE")}>
+        <button
+          className={`bg-linear-to-r from-[#FFA2AA] to-[#FB6F7A] text-white rounded-2xl py-2 px-4 w-full h-13 font-semibold-14 relative ${participated ? "cursor-not-allowed" : ""}`}
+          onClick={() => handleVote("DISAGREE")}
+        >
           <h2>반대하기</h2>
         </button>
         <p className="font-semibold-13 text-red-004 mt-2 mr-2 ml-auto line-clamp-1">
@@ -213,5 +233,4 @@ export const ParticipateButton = ({
       </div>
     </div>
   );
-}
-
+};

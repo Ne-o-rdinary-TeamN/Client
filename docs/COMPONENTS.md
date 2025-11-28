@@ -34,7 +34,7 @@ import { Header } from "@/shared/ui";
   title="페이지 제목"
   icon={<Icon />} // optional
   className="custom-class" // optional
-/>
+/>;
 ```
 
 #### TextField
@@ -49,7 +49,7 @@ import { TextField } from "@/shared/ui";
   value={value}
   onChange={(e) => setValue(e.target.value)}
   approval={true} // optional, 찬성/반대 스타일
-/>
+/>;
 ```
 
 ### 페이지 컴포넌트 (`page/`)
@@ -61,10 +61,11 @@ import { TextField } from "@/shared/ui";
 ```tsx
 import Vote from "@/page/board/ui/Vote";
 
-<Vote postPk={number} />
+<Vote postPk={number} />;
 ```
 
 **Props:**
+
 - `postPk` (number): 게시글 ID
 
 #### Discussion
@@ -74,10 +75,11 @@ import Vote from "@/page/board/ui/Vote";
 ```tsx
 import Discussion from "@/page/board/ui/Discussion";
 
-<Discussion postPk={number} />
+<Discussion postPk={number} />;
 ```
 
 **Props:**
+
 - `postPk` (number): 게시글 ID
 
 #### PostListScrollView
@@ -87,10 +89,11 @@ import Discussion from "@/page/board/ui/Discussion";
 ```tsx
 import PostListScrollView from "@/entities/post/ui/PostListScrollView";
 
-<PostListScrollView category="사회" />
+<PostListScrollView category="사회" />;
 ```
 
 **Props:**
+
 - `category` (Category): 카테고리 타입
 
 ### 엔티티 컴포넌트 (`entities/`)
@@ -102,10 +105,11 @@ import PostListScrollView from "@/entities/post/ui/PostListScrollView";
 ```tsx
 import PostItem from "@/entities/post/ui/PostItem";
 
-<PostItem {...post} />
+<PostItem {...post} />;
 ```
 
 **Props:**
+
 - `postPk` (number)
 - `title` (string)
 - `agree` (boolean)
@@ -123,6 +127,7 @@ import PostItem from "@/entities/post/ui/PostItem";
 ### Server Component vs Client Component
 
 1. **Server Component (기본)**
+
    - 데이터 페칭
    - 백엔드 리소스 직접 접근
    - 큰 의존성 포함
@@ -173,11 +178,7 @@ export default function Component({
 ```tsx
 import { fetchPostList } from "@/entities/post/api/fetchPostList";
 
-export default async function PostsPage({
-  category,
-}: {
-  category: string;
-}) {
+export default async function PostsPage({ category }: { category: string }) {
   const posts = await fetchPostList(category, 0);
 
   return (
@@ -200,11 +201,7 @@ import { useState } from "react";
 export default function Counter() {
   const [count, setCount] = useState(0);
 
-  return (
-    <button onClick={() => setCount(count + 1)}>
-      Count: {count}
-    </button>
-  );
+  return <button onClick={() => setCount(count + 1)}>Count: {count}</button>;
 }
 ```
 
@@ -219,4 +216,3 @@ export default function Counter() {
 - [ ] 접근성을 고려했는가? (aria-label, semantic HTML)
 - [ ] 반응형 디자인을 고려했는가?
 - [ ] 문서화가 되어 있는가?
-

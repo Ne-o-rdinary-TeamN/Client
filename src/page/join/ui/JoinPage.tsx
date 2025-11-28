@@ -76,4 +76,6 @@ export default function JoinPage() {
     case STEP.COMPLETE:
       return <JoinCompleteStep name={funnel.context.name as string} />;
   }
+
+  return null;
 }
